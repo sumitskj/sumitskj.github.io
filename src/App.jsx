@@ -2,7 +2,6 @@
 import { useEffect, useRef, useState } from "react";
 import "./App.css";
 import Hero from "./components/hero/Hero";
-import ScratchCard from "./components/scratchCard/ScratchCard";
 
 function App() {
   const [screenDim, setScreenDim] = useState(null);
@@ -56,7 +55,9 @@ function App() {
       }
 
       // Handle horizontal scroll transition
-      handleHorizontalScrollTransition(scrollTop, screenHeight);
+      if(window.innerWidth >= 1024){
+        handleHorizontalScrollTransition(scrollTop, screenHeight);
+      }
     };
 
     window.addEventListener("resize", handleResize);
@@ -165,16 +166,16 @@ function App() {
           id="component2"
           className="h-screen text-[#FEFCE1] bg-black flex justify-start items-center w-full z-10 rounded-t-[2rem] gap-10 relative"
         >
-          <div className="flex flex-col justify-start items-start w-full h-full px-52 pt-28 gap-20 relative">
+          <div className="flex flex-col justify-start items-start w-full h-full px-10 lg:px-52 pt-28 gap-20 relative">
             <div className="flex justify-start items-center gap-2">
               <div className="text-5xl font-medium">{`{`}</div>
               <div className="flex flex-col items-baseline justify-center font-medium">
-                <div className="text-2xl">{`Who am I ?`}</div>
+                <div className="text-2xl whitespace-nowrap">{`Who am I ?`}</div>
               </div>
               <div className="text-5xl font-medium">{`}`}</div>
             </div>
             <div className="flex justify-center items-start w-full">
-              <div className="w-full text-justify text-5xl">{`This is Sumit, I'm a full-stack developer with over 6 years of experience. Right now, I'm working as a Founding Engineer at TruthSuite (YC W23), where I built almost the entire product by myself. I'm a quick learner, fast developer, and I enjoy taking on new challenges, even outside my comfort zone.`}</div>
+              <div className="w-full text-justify text-lg md:text-2xl lg:text-4xl">{`This is Sumit, I'm a full-stack developer with over 6 years of experience. Right now, I'm working as a Founding Engineer at TruthSuite (YC W23), where I built almost the entire product by myself. I'm a quick learner, fast developer, and I enjoy taking on new challenges, even outside my comfort zone.`}</div>
             </div>
           </div>
         </div>
@@ -185,17 +186,17 @@ function App() {
           <div
             id="component3"
             ref={component3Ref}
-            className="sticky top-0 h-screen bg-black w-full border-t border-t-[#FEFCE1] overflow-hidden z-10"
+            className="relative lg:sticky lg:top-0 lg:h-screen bg-black w-full border-t border-t-[#FEFCE1] overflow-hidden z-10"
           >
             <div
               ref={horizontalWrapperRef}
-              className="flex h-full transition-transform duration-100 ease-out"
+              className="flex flex-col lg:flex-row h-full transition-transform duration-100 ease-out gap-40 lg:gap-0 py-10 lg:py-0"
             >
               <div
                 id="component3-intro"
-                className="flex-shrink-0 w-screen h-full flex items-center justify-center text-white px-52 gap-10"
+                className="flex-shrink-0 w-screen h-full flex flex-col lg:flex-row items-center justify-center text-white px-10 lg:px-52 gap-10"
               >
-                <div className="flex flex-col justify-start items-start w-full">
+                <div className="flex flex-col justify-start items-start w-full lg:pt-0">
                   <div className="bg-[#FEC5FB] z-10 text-black text-2xl font-extrabold px-6 py-4 rounded-xl relative shadow-2xl shadow-gray-600">
                     What my journey have been upto
                   </div>
@@ -210,7 +211,7 @@ function App() {
                     till now and have also tried starting my own company.
                   </div>
                 </div>
-                <div className="flex justify-center items-center relative w-full">
+                <div className="hidden lg:flex justify-center items-center relative w-full">
                   <div className="pt-40 relative">
                     <img src="./semicircle.svg" />
                     <img
@@ -230,22 +231,22 @@ function App() {
               </div>
               <div
                 id="component3-truthsuite"
-                className="flex-shrink-0 w-screen h-full flex items-center justify-center text-white px-52 gap-10"
+                className="flex-shrink-0 w-screen h-full flex flex-col lg:flex-row items-center justify-center text-white px-10 lg:px-52 gap-10"
               >
                 <div className="flex flex-col justify-start items-start w-full">
                   <div className="flex justify-start items-center gap-8 w-full">
-                    <div className="bg-white rounded-full px-4 py-2 font-extrabold text-black text-4xl">
+                    <div className="bg-white rounded-full px-4 py-2 font-extrabold text-black text-xl lg:text-4xl">
                       #1
                     </div>
-                    <div className="bg-gradient-to-r from-green-500 to-green-300 z-10 text-black text-2xl font-extrabold px-6 py-4 rounded-xl relative shadow-2xl shadow-gray-600">
+                    <div className="bg-gradient-to-r from-green-500 to-green-300 z-10 text-black text-xl lg:text-2xl font-extrabold px-6 py-4 rounded-xl relative shadow-2xl shadow-gray-600">
                       {`TruthSuite (YCombinator W23)`}
                     </div>
                   </div>
-                  <div className="text-[#FEFCE1] text-2xl pt-20 font-extrabold whitespace-nowrap">
+                  <div className="text-[#FEFCE1] text-xl lg:text-2xl pt-20 font-extrabold lg:whitespace-nowrap">
                     Founding Engineer
-                    <span className="font-light px-4 whitespace-nowrap">{`(Feb 2024 - Present)`}</span>
+                    <span className="font-light px-4 lg:whitespace-nowrap">{`(Feb 2024 - Present)`}</span>
                   </div>
-                  <ul className="list-disc list-outside text-2xl text-[#FEFCE1] pt-10 pl-6">
+                  <ul className="list-disc list-outside text-xl lg:text-2xl text-[#FEFCE1] pt-10 pl-6">
                     <li>
                       Building a platform to speed up searching through cases of
                       Law Firms.
@@ -268,22 +269,22 @@ interacting with any webpage.`}
               </div>
               <div
                 id="component3-hyperbrand"
-                className="flex-shrink-0 w-screen h-full flex items-center justify-center text-white px-52 gap-10"
+                className="flex-shrink-0 w-screen h-full flex flex-col lg:flex-row items-center justify-center text-white px-10 lg:px-52 gap-10"
               >
                 <div className="flex flex-col justify-start items-start w-full">
                   <div className="flex justify-start items-center gap-8 w-full">
-                    <div className="bg-white rounded-full px-4 py-2 font-extrabold text-black text-4xl">
+                    <div className="bg-white rounded-full px-4 py-2 font-extrabold text-black text-xl lg:text-4xl">
                       #2
                     </div>
-                    <div className="bg-gradient-to-r from-green-500 to-green-300 z-10 text-black text-2xl font-extrabold px-6 py-4 rounded-xl relative shadow-2xl shadow-gray-600">
+                    <div className="bg-gradient-to-r from-green-500 to-green-300 z-10 text-black text-xl lg:text-2xl font-extrabold px-6 py-4 rounded-xl relative shadow-2xl shadow-gray-600">
                       TopTime Club and TheHyperBrand
                     </div>
                   </div>
-                  <div className="text-[#FEFCE1] text-2xl pt-20 font-extrabold whitespace-nowrap">
+                  <div className="text-[#FEFCE1] text-xl lg:text-2xl pt-20 font-extrabold lg:whitespace-nowrap">
                     Co-Founder and CTO
-                    <span className="font-light px-4 whitespace-nowrap">{`(Apr 2023 - Jan 2024)`}</span>
+                    <span className="font-light px-4 lg:whitespace-nowrap">{`(Apr 2023 - Jan 2024)`}</span>
                   </div>
-                  <ul className="list-disc list-outside text-2xl text-[#FEFCE1] pt-10 pl-6">
+                  <ul className="list-disc list-outside text-xl lg:text-2xl text-[#FEFCE1] pt-10 pl-6">
                     <li>
                       Platform to create SEO-optimized AI-generated blogs and
                       social media posts to drive more traffic, and hotter leads
@@ -310,22 +311,22 @@ TheHyperBrand.`}
               </div>
               <div
                 id="component3-upgrad"
-                className="flex-shrink-0 w-screen h-full flex items-center justify-center text-white px-52 gap-10"
+                className="flex-shrink-0 w-screen h-full flex flex-col lg:flex-row items-center justify-center text-white px-10 lg:px-52 gap-10"
               >
                 <div className="flex flex-col justify-start items-start w-full">
                   <div className="flex justify-start items-center gap-8 w-full">
-                    <div className="bg-white rounded-full px-4 py-2 font-extrabold text-black text-4xl">
+                    <div className="bg-white rounded-full px-4 py-2 font-extrabold text-black text-xl lg:text-4xl">
                       #3
                     </div>
-                    <div className="bg-gradient-to-r from-green-500 to-green-300 z-10 text-black text-2xl font-extrabold px-6 py-4 rounded-xl relative shadow-2xl shadow-gray-600">
+                    <div className="bg-gradient-to-r from-green-500 to-green-300 z-10 text-black text-xl lg:text-2xl font-extrabold px-6 py-4 rounded-xl relative shadow-2xl shadow-gray-600">
                       upGrad
                     </div>
                   </div>
-                  <div className="text-[#FEFCE1] text-2xl pt-20 font-extrabold whitespace-nowrap">
+                  <div className="text-[#FEFCE1] text-xl lg:text-2xl pt-20 font-extrabold lg:whitespace-nowrap">
                     Software Engineer 2
-                    <span className="font-light px-4 whitespace-nowrap">{`(Oct 2022 - Mar 2023)`}</span>
+                    <span className="font-light px-4 lg:whitespace-nowrap">{`(Oct 2022 - Mar 2023)`}</span>
                   </div>
-                  <ul className="list-disc list-outside text-2xl text-[#FEFCE1] pt-10 pl-6">
+                  <ul className="list-disc list-outside text-xl lg:text-2xl text-[#FEFCE1] pt-10 pl-6">
                     <li>
                       Transitioned a monolithic service to microservices,
                       reducing average latency by 40% to 120ms.
@@ -337,28 +338,28 @@ TheHyperBrand.`}
                 </div>
                 <div className="flex justify-center items-center relative w-full">
                   <div className="relative bg-white">
-                    <img src="./upgrad-logo.jpg" className="h-[260px]" />
+                    <img src="./upgrad-logo.jpg" className="h-[160px] lg:h-[260px]" />
                   </div>
                 </div>
               </div>
               <div
                 id="component3-here"
-                className="flex-shrink-0 w-screen h-full flex items-center justify-center text-white px-52 gap-10"
+                className="flex-shrink-0 w-screen h-full flex flex-col lg:flex-row items-center justify-center text-white px-10 lg:px-52 gap-10"
               >
                 <div className="flex flex-col justify-start items-start w-full">
                   <div className="flex justify-start items-center gap-8 w-full">
-                    <div className="bg-white rounded-full px-4 py-2 font-extrabold text-black text-4xl">
+                    <div className="bg-white rounded-full px-4 py-2 font-extrabold text-black text-xl lg:text-4xl">
                       #4
                     </div>
-                    <div className="bg-gradient-to-r from-green-500 to-green-300 z-10 text-black text-2xl font-extrabold px-6 py-4 rounded-xl relative shadow-2xl shadow-gray-600">
+                    <div className="bg-gradient-to-r from-green-500 to-green-300 z-10 text-black text-xl lg:text-2xl font-extrabold px-6 py-4 rounded-xl relative shadow-2xl shadow-gray-600">
                       Here Technologies
                     </div>
                   </div>
-                  <div className="text-[#FEFCE1] text-2xl pt-20 font-extrabold whitespace-nowrap">
+                  <div className="text-[#FEFCE1] text-xl lg:text-2xl pt-20 font-extrabold lg:whitespace-nowrap">
                     Software Engineer 2
-                    <span className="font-light px-4 whitespace-nowrap">{`(Oct 2021 - Oct 2022)`}</span>
+                    <span className="font-light px-4 lg:whitespace-nowrap">{`(Oct 2021 - Oct 2022)`}</span>
                   </div>
-                  <ul className="list-disc list-outside text-2xl text-[#FEFCE1] pt-10 pl-6">
+                  <ul className="list-disc list-outside text-xl lg:text-2xl text-[#FEFCE1] pt-10 pl-6">
                     <li>
                       Worked on a project displaying real-time dynamic incident
                       content on HERE Maps.
@@ -374,28 +375,28 @@ enabling immediate access to critical data and improving overall operational eff
                 </div>
                 <div className="flex justify-center items-center relative w-full">
                   <div className="relative bg-white">
-                    <img src="./here-logo.png" className="h-[320px]" />
+                    <img src="./here-logo.png" className="h-[220px] lg:h-[320px]" />
                   </div>
                 </div>
               </div>
               <div
                 id="component3-globallogic"
-                className="flex-shrink-0 w-screen h-full flex items-center justify-center text-white px-52 gap-10"
+                className="flex-shrink-0 w-screen h-full flex flex-col lg:flex-row items-center justify-center text-white px-10 lg:px-52 gap-10"
               >
                 <div className="flex flex-col justify-start items-start w-full">
                   <div className="flex justify-start items-center gap-8 w-full">
-                    <div className="bg-white rounded-full px-4 py-2 font-extrabold text-black text-4xl">
+                    <div className="bg-white rounded-full px-4 py-2 font-extrabold text-black text-xl lg:text-4xl">
                       #5
                     </div>
-                    <div className="bg-gradient-to-r from-green-500 to-green-300 z-10 text-black text-2xl font-extrabold px-6 py-4 rounded-xl relative shadow-2xl shadow-gray-600">
+                    <div className="bg-gradient-to-r from-green-500 to-green-300 z-10 text-black text-xl lg:text-2xl font-extrabold px-6 py-4 rounded-xl relative shadow-2xl shadow-gray-600">
                       GlobalLogic
                     </div>
                   </div>
-                  <div className="text-[#FEFCE1] text-2xl pt-20 font-extrabold whitespace-nowrap">
+                  <div className="text-[#FEFCE1] text-xl lg:text-2xl pt-20 font-extrabold lg:whitespace-nowrap">
                     Software Engineer
-                    <span className="font-light px-4 whitespace-nowrap">{`(July 2019 - Oct 2021)`}</span>
+                    <span className="font-light px-4 lg:whitespace-nowrap">{`(July 2019 - Oct 2021)`}</span>
                   </div>
-                  <ul className="list-disc list-outside text-2xl text-[#FEFCE1] pt-10 pl-6">
+                  <ul className="list-disc list-outside text-xl lg:text-2xl text-[#FEFCE1] pt-10 pl-6">
                     <li>My first company right out from college.</li>
                     <li>
                       {`Worked on multiple projects as a backend engineer. One of
@@ -415,27 +416,27 @@ enabling immediate access to critical data and improving overall operational eff
               </div>
               <div
                 id="component3-college"
-                className="flex-shrink-0 w-screen h-full flex items-center justify-center text-white px-52 gap-10"
+                className="flex-shrink-0 w-screen h-full flex flex-col lg:flex-row items-center justify-center text-white px-10 lg:px-52 gap-10"
               >
                 <div className="flex flex-col justify-start items-start w-full">
                   <div className="flex justify-start items-center gap-8 w-full">
-                    <div className="bg-white rounded-full px-4 py-2 font-extrabold text-black text-4xl">
+                    <div className="bg-white rounded-full px-4 py-2 font-extrabold text-black text-xl lg:text-4xl">
                       #6
                     </div>
-                    <div className="bg-gradient-to-r from-green-500 to-green-300 z-10 text-black text-2xl font-extrabold px-6 py-4 rounded-xl relative shadow-2xl shadow-gray-600">
+                    <div className="bg-gradient-to-r from-green-500 to-green-300 z-10 text-black text-xl lg:text-2xl font-extrabold px-6 py-4 rounded-xl relative shadow-2xl shadow-gray-600">
                       College
                     </div>
                   </div>
-                  <div className="text-[#FEFCE1] text-2xl pt-20 font-extrabold">
+                  <div className="text-[#FEFCE1] text-xl lg:text-2xl pt-20 font-extrabold">
                     Bachelor of Technology{" "}
                     <span className="font-light px-4">in</span> Computer Science
                     and Engineering{" "}
                     <span className="font-light px-4">from</span>
                   </div>
-                  <div className="text-[#FEFCE1] text-2xl  font-extrabold pt-10 underline">
+                  <div className="text-[#FEFCE1] text-xl lg:text-2xl  font-extrabold pt-10 underline">
                     Government College of Engineering, Amravati
                   </div>
-                  <div className="text-[#FEFCE1] text-2xl  font-extrabold pt-10">
+                  <div className="text-[#FEFCE1] text-xl lg:text-2xl  font-extrabold pt-10">
                     CGPA{" "}
                     <span className="p-4 bg-[#FEFCE1] text-black rounded-lg">
                       7.80
@@ -454,7 +455,7 @@ enabling immediate access to critical data and improving overall operational eff
           {/* Spacer for horizontal scrolling */}
           <div
             ref={scrollSpacerRef}
-            className="pointer-events-none"
+            className="pointer-events-none hidden lg:block"
             style={{ height: `${(horizontalItems.length - 1) * 100}vh` }}
           />
         </div>
@@ -462,7 +463,7 @@ enabling immediate access to critical data and improving overall operational eff
         {/* Component 4 - Next Vertical Section */}
         <div
           id="component4"
-          className="w-full bg-[black] flex flex-col items-start justify-start text-4xl font-bold relative z-0 px-52 py-28 gap-20 border-t border-t-[#FEFCE1]"
+          className="w-full bg-[black] flex flex-col items-start justify-start text-4xl font-bold relative z-0 px-10 lg:px-52 py-28 gap-20 border-t border-t-[#FEFCE1]"
         >
           <div className="text-[#FEFCE1] flex justify-start items-center gap-2">
             <div className="text-5xl font-medium">{`{`}</div>
@@ -475,13 +476,13 @@ enabling immediate access to critical data and improving overall operational eff
             onClick={() =>
               window.open("https://thb-frontend.azurewebsites.net/", "_blank")
             }
-            className="flex justify-start items-start w-full border-2 border-[#FEFCE1] rounded-xl p-10 cursor-pointer hover:border-4 gap-10"
+            className="flex flex-col lg:flex-row justify-start items-start w-full border-2 border-[#FEFCE1] rounded-xl p-10 cursor-pointer hover:border-4 gap-10"
           >
             <div className="flex flex-col justify-start items-start w-full gap-10">
-              <div className="text-[#FEFCE1] text-2xl font-extrabold">
+              <div className="text-[#FEFCE1] text-xl lg:text-2xl font-extrabold">
                 TheHyperBrand
               </div>
-              <div className="text-[#FEFCE1] text-2xl font-light">
+              <div className="text-[#FEFCE1] text-xl lg:text-2xl font-light">
                 Platform to create SEO-optimized AI-generated blogs and social
                 media posts to drive more traffic, and hotter leads. You can
                 also create backlinks and do keyword research. <br />
@@ -498,12 +499,12 @@ enabling immediate access to critical data and improving overall operational eff
               <img src="thb.gif" className="h-[400px] rounded-xl" />
             </div>
           </div>
-          <div className="flex justify-start items-start w-full border-2 border-[#FEFCE1] rounded-xl p-10 cursor-pointer hover:border-4 gap-10">
+          <div className="flex flex-col lg:flex-row justify-start items-start w-full border-2 border-[#FEFCE1] rounded-xl p-10 cursor-pointer hover:border-4 gap-10">
             <div className="flex flex-col justify-start items-start w-full gap-10">
-              <div className="text-[#FEFCE1] text-2xl font-extrabold">
+              <div className="text-[#FEFCE1] text-xl lg:text-2xl font-extrabold">
                 TopTime Club
               </div>
-              <div className="text-[#FEFCE1] text-2xl font-light">
+              <div className="text-[#FEFCE1] text-xl lg:text-2xl font-light">
                 Platform where people can offer 1-1 calls for their expert
                 services to the users who need them by charging them on per
                 minute basis. So it will be like a marketplace of experts and
@@ -517,12 +518,12 @@ enabling immediate access to critical data and improving overall operational eff
               <img src="thb.gif" className="h-[400px] rounded-xl" />
             </div>
           </div>
-          <div className="flex justify-start items-start w-full border-2 border-[#FEFCE1] rounded-xl p-10 cursor-pointer hover:border-4 gap-10">
+          <div className="flex flex-col lg:flex-row justify-start items-start w-full border-2 border-[#FEFCE1] rounded-xl p-10 cursor-pointer hover:border-4 gap-10">
             <div className="flex flex-col justify-start items-start w-full gap-10">
-              <div className="text-[#FEFCE1] text-2xl font-extrabold">
+              <div className="text-[#FEFCE1] text-xl lg:text-2xl font-extrabold">
                 GuideKaka
               </div>
-              <div className="text-[#FEFCE1] text-2xl font-light">
+              <div className="text-[#FEFCE1] text-xl lg:text-2xl font-light">
                 Platform where people can offer 1-1 calls for their expert
                 services to the users who need them by charging them on per
                 minute basis. So it will be like a marketplace of experts and
@@ -539,7 +540,7 @@ enabling immediate access to critical data and improving overall operational eff
         </div>
         <div
           id="component4"
-          className="w-full bg-[black] flex flex-col items-start justify-start text-4xl font-bold relative z-0 px-52 py-28 gap-20 border-t border-t-[#FEFCE1]"
+          className="w-full bg-[black] flex flex-col items-start justify-start text-4xl font-bold relative z-0 px-10 lg:px-52 py-28 gap-20 border-t border-t-[#FEFCE1]"
         >
           <div className="text-[#FEFCE1] flex justify-start items-center gap-2">
             <div className="text-5xl font-medium">{`{`}</div>
@@ -550,28 +551,37 @@ enabling immediate access to critical data and improving overall operational eff
           </div>
           <div className="text-[#FEFCE1] flex flex-col justify-start items-start w-full relative gap-10">
             <div className="flex flex-col justify-start items-start w-full gap-4">
-              <div className="text-2xl font-extrabold whitespace-nowrap">
+              <div className="text-xl lg:text-2xl font-extrabold whitespace-nowrap">
                 Languages, Tools & Concepts
               </div>
-              <span className="text-2xl font-light w-full">{`Java, Python, Javascript, SQL, UNIX, HTML, RabbitMQ, Kafka, AWS, Docker, LLM, RAG, WebRTC, SEO`}</span>
+              <span className="text-xl lg:text-2xl font-light w-full">{`Java, Python, Javascript, SQL, UNIX, HTML, RabbitMQ, Kafka, AWS, Docker, LLM, RAG, WebRTC, SEO`}</span>
             </div>
             <div className="flex flex-col justify-start items-start w-full gap-4">
-              <div className="text-2xl font-extrabold whitespace-nowrap">
+              <div className="text-xl lg:text-2xl font-extrabold whitespace-nowrap">
                 Frameworks & Libraries
               </div>
-              <span className="text-2xl font-light">{`Spring Boot, NodeJs, ReactJs, FastAPI`}</span>
+              <span className="text-xl lg:text-2xl font-light">{`Spring Boot, NodeJs, ReactJs, FastAPI`}</span>
             </div>
             <div className="flex flex-col justify-start items-start w-full gap-4">
-              <div className="text-2xl font-extrabold whitespace-nowrap">
+              <div className="text-xl lg:text-2xl font-extrabold whitespace-nowrap">
                 Databases
               </div>
-              <span className="text-2xl font-light">{`MySQL, PostgreSQL, MongoDB, Cassandra, Redis, Vector Databases (Weaviate)`}</span>
+              <span className="text-xl lg:text-2xl font-light">{`MySQL, PostgreSQL, MongoDB, Cassandra, Redis, Vector Databases (Weaviate)`}</span>
+            </div>
+            <div className="flex flex-col justify-start items-start w-full gap-4">
+              <div className="text-xl lg:text-2xl font-extrabold whitespace-nowrap">
+                Fun Fact
+              </div>
+              <span className="text-xl lg:text-2xl font-light">{`I can do a Handstand.`}</span>
             </div>
           </div>
         </div>
+        <div className="w-full bg-black h-screen flex justify-center items-center">
+          <img src="flex.png" className="h-full"/>
+        </div>
         <div
           id="footer"
-          className="w-full bg-white flex flex-col items-start justify-start text-2xl font-bold relative z-0 px-52 py-28 gap-20"
+          className="w-full bg-white flex flex-col items-start justify-start text-xl lg:text-2xl font-bold relative z-0 px-10 lg:px-52 py-28 gap-20"
         >
           <div className="text-black flex justify-start items-center gap-2">
             <div className="text-5xl font-medium">{`{`}</div>
@@ -580,7 +590,7 @@ enabling immediate access to critical data and improving overall operational eff
             </div>
             <div className="text-5xl font-medium">{`}`}</div>
           </div>
-          <div className="flex justify-between items-start w-full">
+          <div className="flex flex-col lg:flex-row gap-10 lg:gap-0 justify-between items-start w-full">
             <div className="text-xl font-light flex flex-col gap-4 w-full items-start justify-start">
               <div
                 onClick={() =>
