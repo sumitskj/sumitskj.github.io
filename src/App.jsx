@@ -149,11 +149,11 @@ function App() {
           `| Item: ${currentHorizontalIndex + 1}/${horizontalItems.length}`}
       </div> */}
 
-      <div className="flex flex-col font-sans w-screen min-h-screen h-full bg-white text-black justify-start items-start relative">
+      <div className="flex flex-col font-montserrat w-screen min-h-screen h-full bg-white text-black justify-start items-start relative">
         {/* Component 1 - Hero */}
         <div
           id="component1"
-          className="hero-transparent-layer h-screen bg-gradient-to-br from-purple-600 to-blue-600"
+          className="font-rubik hero-transparent-layer h-screen bg-gradient-to-br from-purple-600 to-blue-600"
         >
           <div id="hero">
             <Hero />
@@ -204,7 +204,7 @@ function App() {
                       My Career
                     </div>
                   </div>
-                  <div className="text-[#FEFCE1] text-4xl pt-24">
+                  <div className="text-[#FEFCE1] text-2xl pt-24">
                     I have a Bachelor's degree in Computer Science and
                     Engineering. And have worked with 4 different organisations
                     till now and have also tried starting my own company.
@@ -241,7 +241,7 @@ function App() {
                       {`TruthSuite (YCombinator W23)`}
                     </div>
                   </div>
-                  <div className="text-[#FEFCE1] text-4xl pt-20 font-extrabold whitespace-nowrap">
+                  <div className="text-[#FEFCE1] text-2xl pt-20 font-extrabold whitespace-nowrap">
                     Founding Engineer
                     <span className="font-light px-4 whitespace-nowrap">{`(Feb 2024 - Present)`}</span>
                   </div>
@@ -279,7 +279,7 @@ interacting with any webpage.`}
                       TopTime Club and TheHyperBrand
                     </div>
                   </div>
-                  <div className="text-[#FEFCE1] text-4xl pt-20 font-extrabold whitespace-nowrap">
+                  <div className="text-[#FEFCE1] text-2xl pt-20 font-extrabold whitespace-nowrap">
                     Co-Founder and CTO
                     <span className="font-light px-4 whitespace-nowrap">{`(Apr 2023 - Jan 2024)`}</span>
                   </div>
@@ -321,7 +321,7 @@ TheHyperBrand.`}
                       upGrad
                     </div>
                   </div>
-                  <div className="text-[#FEFCE1] text-4xl pt-20 font-extrabold whitespace-nowrap">
+                  <div className="text-[#FEFCE1] text-2xl pt-20 font-extrabold whitespace-nowrap">
                     Software Engineer 2
                     <span className="font-light px-4 whitespace-nowrap">{`(Oct 2022 - Mar 2023)`}</span>
                   </div>
@@ -354,7 +354,7 @@ TheHyperBrand.`}
                       Here Technologies
                     </div>
                   </div>
-                  <div className="text-[#FEFCE1] text-4xl pt-20 font-extrabold whitespace-nowrap">
+                  <div className="text-[#FEFCE1] text-2xl pt-20 font-extrabold whitespace-nowrap">
                     Software Engineer 2
                     <span className="font-light px-4 whitespace-nowrap">{`(Oct 2021 - Oct 2022)`}</span>
                   </div>
@@ -391,7 +391,7 @@ enabling immediate access to critical data and improving overall operational eff
                       GlobalLogic
                     </div>
                   </div>
-                  <div className="text-[#FEFCE1] text-4xl pt-20 font-extrabold whitespace-nowrap">
+                  <div className="text-[#FEFCE1] text-2xl pt-20 font-extrabold whitespace-nowrap">
                     Software Engineer
                     <span className="font-light px-4 whitespace-nowrap">{`(July 2019 - Oct 2021)`}</span>
                   </div>
@@ -423,19 +423,19 @@ enabling immediate access to critical data and improving overall operational eff
                       #6
                     </div>
                     <div className="bg-gradient-to-r from-green-500 to-green-300 z-10 text-black text-2xl font-extrabold px-6 py-4 rounded-xl relative shadow-2xl shadow-gray-600">
-                      Alma Mater
+                      College
                     </div>
                   </div>
-                  <div className="text-[#FEFCE1] text-3xl pt-20 font-extrabold">
+                  <div className="text-[#FEFCE1] text-2xl pt-20 font-extrabold">
                     Bachelor of Technology{" "}
                     <span className="font-light px-4">in</span> Computer Science
                     and Engineering{" "}
                     <span className="font-light px-4">from</span>
                   </div>
-                  <div className="text-[#FEFCE1] text-3xl  font-extrabold pt-10 underline">
+                  <div className="text-[#FEFCE1] text-2xl  font-extrabold pt-10 underline">
                     Government College of Engineering, Amravati
                   </div>
-                  <div className="text-[#FEFCE1] text-3xl  font-extrabold pt-10">
+                  <div className="text-[#FEFCE1] text-2xl  font-extrabold pt-10">
                     CGPA{" "}
                     <span className="p-4 bg-[#FEFCE1] text-black rounded-lg">
                       7.80
@@ -478,10 +478,10 @@ enabling immediate access to critical data and improving overall operational eff
             className="flex justify-start items-start w-full border-2 border-[#FEFCE1] rounded-xl p-10 cursor-pointer hover:border-4 gap-10"
           >
             <div className="flex flex-col justify-start items-start w-full gap-10">
-              <div className="text-[#FEFCE1] text-4xl font-extrabold">
+              <div className="text-[#FEFCE1] text-2xl font-extrabold">
                 TheHyperBrand
               </div>
-              <div className="text-[#FEFCE1] text-xl font-light">
+              <div className="text-[#FEFCE1] text-2xl font-light">
                 Platform to create SEO-optimized AI-generated blogs and social
                 media posts to drive more traffic, and hotter leads. You can
                 also create backlinks and do keyword research. <br />
@@ -500,10 +500,10 @@ enabling immediate access to critical data and improving overall operational eff
           </div>
           <div className="flex justify-start items-start w-full border-2 border-[#FEFCE1] rounded-xl p-10 cursor-pointer hover:border-4 gap-10">
             <div className="flex flex-col justify-start items-start w-full gap-10">
-              <div className="text-[#FEFCE1] text-4xl font-extrabold">
+              <div className="text-[#FEFCE1] text-2xl font-extrabold">
                 TopTime Club
               </div>
-              <div className="text-[#FEFCE1] text-xl font-light">
+              <div className="text-[#FEFCE1] text-2xl font-light">
                 Platform where people can offer 1-1 calls for their expert
                 services to the users who need them by charging them on per
                 minute basis. So it will be like a marketplace of experts and
@@ -519,10 +519,10 @@ enabling immediate access to critical data and improving overall operational eff
           </div>
           <div className="flex justify-start items-start w-full border-2 border-[#FEFCE1] rounded-xl p-10 cursor-pointer hover:border-4 gap-10">
             <div className="flex flex-col justify-start items-start w-full gap-10">
-              <div className="text-[#FEFCE1] text-4xl font-extrabold">
+              <div className="text-[#FEFCE1] text-2xl font-extrabold">
                 GuideKaka
               </div>
-              <div className="text-[#FEFCE1] text-xl font-light">
+              <div className="text-[#FEFCE1] text-2xl font-light">
                 Platform where people can offer 1-1 calls for their expert
                 services to the users who need them by charging them on per
                 minute basis. So it will be like a marketplace of experts and
@@ -571,7 +571,7 @@ enabling immediate access to critical data and improving overall operational eff
         </div>
         <div
           id="footer"
-          className="w-full bg-white flex flex-col items-start justify-start text-4xl font-bold relative z-0 px-52 py-28 gap-20"
+          className="w-full bg-white flex flex-col items-start justify-start text-2xl font-bold relative z-0 px-52 py-28 gap-20"
         >
           <div className="text-black flex justify-start items-center gap-2">
             <div className="text-5xl font-medium">{`{`}</div>

@@ -35,7 +35,7 @@ function Hero() {
           />
         </div>
       </div>
-      <div className="flex justify-start items-center gap-2">
+      <div className="delayed-caption flex justify-start items-center gap-2 pt-10">
         <div className="text-5xl font-medium">{`{`}</div>
         <div className="flex flex-col items-baseline justify-center font-medium">
           <div className="text-lg">{`Jack of all trades, master of none,`}</div>
