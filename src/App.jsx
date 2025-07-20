@@ -507,10 +507,15 @@ TheHyperBrand.`}
               </div>
             </div>
             <div className="flex flex-col justify-start items-start w-full">
-              <img src="thb.gif" className="h-[400px] rounded-xl" />
+              <img src="thb.gif" className="h-[200px] lg:h-[400px] rounded-xl" />
             </div>
           </div>
-          <div className="flex flex-col lg:flex-row justify-start items-start w-full border-2 border-[#FEFCE1] rounded-xl p-10 cursor-pointer hover:border-4 gap-10">
+          <div
+            onClick={() =>
+              window.open("https://toptime-ui.azurewebsites.net/", "_blank")
+            }
+            className="flex flex-col lg:flex-row justify-start items-start w-full border-2 border-[#FEFCE1] rounded-xl p-10 cursor-pointer hover:border-4 gap-10"
+          >
             <div className="flex flex-col justify-start items-start w-full gap-10">
               <div className="text-[#FEFCE1] text-xl lg:text-2xl font-extrabold">
                 TopTime Club
@@ -524,10 +529,13 @@ TheHyperBrand.`}
               </div>
             </div>
             <div className="flex flex-col justify-start items-start w-full">
-              <img src="thb.gif" className="h-[400px] rounded-xl" />
+              <img src="toptime.gif" className="h-[200px] lg:h-[400px] rounded-xl" />
             </div>
           </div>
-          <div className="flex flex-col lg:flex-row justify-start items-start w-full border-2 border-[#FEFCE1] rounded-xl p-10 cursor-pointer hover:border-4 gap-10">
+          <div
+            onClick={() => window.open("https://guidekaka.com/", "_blank")}
+            className="flex flex-col lg:flex-row justify-start items-start w-full border-2 border-[#FEFCE1] rounded-xl p-10 cursor-pointer hover:border-4 gap-10"
+          >
             <div className="flex flex-col justify-start items-start w-full gap-10">
               <div className="text-[#FEFCE1] text-xl lg:text-2xl font-extrabold">
                 GuideKaka
@@ -539,10 +547,18 @@ TheHyperBrand.`}
               </div>
             </div>
             <div className="flex flex-col justify-start items-start w-full">
-              <img src="thb.gif" className="h-[400px] rounded-xl" />
+              <img src="gk.gif" className="h-[200px] lg:h-[400px] rounded-xl" />
             </div>
           </div>
-          <div className="flex flex-col lg:flex-row justify-start items-start w-full border-2 border-[#FEFCE1] rounded-xl p-10 cursor-pointer hover:border-4 gap-10">
+          <div
+            onClick={() =>
+              window.open(
+                "https://nuoser-frontend.azurewebsites.net/",
+                "_blank"
+              )
+            }
+            className="flex flex-col lg:flex-row justify-start items-start w-full border-2 border-[#FEFCE1] rounded-xl p-10 cursor-pointer hover:border-4 gap-10"
+          >
             <div className="flex flex-col justify-start items-start w-full gap-10">
               <div className="text-[#FEFCE1] text-xl lg:text-2xl font-extrabold">
                 Boldena
@@ -554,7 +570,7 @@ TheHyperBrand.`}
               </div>
             </div>
             <div className="flex flex-col justify-start items-start w-full">
-              <img src="thb.gif" className="h-[400px] rounded-xl" />
+              <img src="boldena.gif" className="h-[200px] lg:h-[400px] rounded-xl" />
             </div>
           </div>
         </div>
