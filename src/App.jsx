@@ -507,7 +507,10 @@ TheHyperBrand.`}
               </div>
             </div>
             <div className="flex flex-col justify-start items-start w-full">
-              <img src="thb.gif" className="h-[200px] lg:h-[400px] rounded-xl" />
+              <img
+                src="thb.gif"
+                className="h-[200px] lg:h-[400px] rounded-xl"
+              />
             </div>
           </div>
           <div
@@ -529,7 +532,10 @@ TheHyperBrand.`}
               </div>
             </div>
             <div className="flex flex-col justify-start items-start w-full">
-              <img src="toptime.gif" className="h-[200px] lg:h-[400px] rounded-xl" />
+              <img
+                src="toptime.gif"
+                className="h-[200px] lg:h-[400px] rounded-xl"
+              />
             </div>
           </div>
           <div
@@ -570,7 +576,10 @@ TheHyperBrand.`}
               </div>
             </div>
             <div className="flex flex-col justify-start items-start w-full">
-              <img src="boldena.gif" className="h-[200px] lg:h-[400px] rounded-xl" />
+              <img
+                src="boldena.gif"
+                className="h-[200px] lg:h-[400px] rounded-xl"
+              />
             </div>
           </div>
         </div>
@@ -628,47 +637,33 @@ TheHyperBrand.`}
           </div>
           <div className="flex flex-col lg:flex-row gap-10 lg:gap-0 justify-between items-start w-full">
             <div className="text-xl font-light flex flex-col gap-4 w-full items-start justify-start">
-              <div
-                onClick={() =>
-                  window.open(
-                    "https://www.linkedin.com/in/sumit-jangir/",
-                    "_blank"
-                  )
-                }
+              <a
+                href="https://www.linkedin.com/in/sumit-jangir/"
                 className="cursor-pointer hover:underline"
               >
                 LinkedIn
-              </div>
-              <div
-                onClick={() =>
-                  window.open("https://github.com/sumitskj", "_blank")
-                }
+              </a>
+              <a
+                href="https://github.com/sumitskj"
                 className="cursor-pointer hover:underline"
               >
                 GitHub
-              </div>
-              <div
-                onClick={() =>
-                  window.open(
-                    "https://www.linkedin.com/in/sumit-jangir/",
-                    "_blank"
-                  )
-                }
-                className="hover:underline"
-              >
+              </a>
+              <div className="hover:underline whitespace-nowrap">
                 Email: sumitjangirdss.1@gmail.com
               </div>
             </div>
             <div className="text-xl font-light flex flex-col gap-4 w-full items-start justify-start">
-              <div
-                onClick={() => window.open("./resume.pdf", "_blank")}
+              <a
+                href="./resume.pdf"
+                target="_blank"
                 className="cursor-pointer hover:underline"
               >
                 Resume
-              </div>
+              </a>
             </div>
             <div className="text-xl font-light flex flex-col gap-4 w-full items-start justify-start">
-              <div className="font-medium">LOCAL TIME</div>
+              <div className="font-medium">YOUR LOCAL TIME</div>
               <span id="clock">-----</span>
             </div>
           </div>
