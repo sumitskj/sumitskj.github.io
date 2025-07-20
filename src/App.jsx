@@ -55,7 +55,7 @@ function App() {
       }
 
       // Handle horizontal scroll transition
-      if(window.innerWidth >= 1024){
+      if (window.innerWidth >= 1024) {
         handleHorizontalScrollTransition(scrollTop, screenHeight);
       }
     };
@@ -175,7 +175,7 @@ function App() {
               <div className="text-5xl font-medium">{`}`}</div>
             </div>
             <div className="flex justify-center items-start w-full">
-              <div className="w-full text-justify text-lg md:text-2xl lg:text-4xl">{`This is Sumit, I'm a full-stack developer with over 6 years of experience. Right now, I'm working as a Founding Engineer at TruthSuite (YC W23), where I built almost the entire product by myself. I'm a quick learner, fast developer, and I enjoy taking on new challenges, even outside my comfort zone.`}</div>
+              <div className="w-full text-justify text-lg md:text-2xl lg:text-3xl">{`I'm Sumit Kumar Jangir — a full-stack engineer and startup builder. With over 6 years of experience across YC-backed startups and major tech firms like upGrad and HERE Technologies, I specialize in building scalable systems, AI agentic apps, and delivering end-to-end products—from backend and frontend to mobile and DevOps. I've co-founded platforms focused on AI-generated content and SEO automation, and I'm passionate about shipping impactful products fast.`}</div>
             </div>
           </div>
         </div>
@@ -198,7 +198,7 @@ function App() {
               >
                 <div className="flex flex-col justify-start items-start w-full lg:pt-0">
                   <div className="bg-[#FEC5FB] z-10 text-black text-2xl font-extrabold px-6 py-4 rounded-xl relative shadow-2xl shadow-gray-600">
-                    What my journey have been upto
+                    What my journey have been upto?
                   </div>
                   <div className="pl-10">
                     <div className="bg-[#FE8708] w-fit text-black text-2xl font-extrabold px-6 py-4 rounded-xl -rotate-12">
@@ -206,9 +206,10 @@ function App() {
                     </div>
                   </div>
                   <div className="text-[#FEFCE1] text-2xl pt-24">
-                    I have a Bachelor's degree in Computer Science and
-                    Engineering. And have worked with 4 different organisations
-                    till now and have also tried starting my own company.
+                    I hold a Bachelor's degree in Computer Science and
+                    Engineering, have worked with four diverse organizations,
+                    and have also ventured into entrepreneurship by starting my
+                    own company.
                   </div>
                 </div>
                 <div className="hidden lg:flex justify-center items-center relative w-full">
@@ -238,7 +239,7 @@ function App() {
                     <div className="bg-white rounded-full px-4 py-2 font-extrabold text-black text-xl lg:text-4xl">
                       #1
                     </div>
-                    <div className="bg-gradient-to-r from-green-500 to-green-300 z-10 text-black text-xl lg:text-2xl font-extrabold px-6 py-4 rounded-xl relative shadow-2xl shadow-gray-600">
+                    <div className="bg-gradient-to-r from-green-500 to-green-300 z-10 text-black text-xl lg:text-2xl font-extrabold px-6 py-4 rounded-xl relative shadow-2xl shadow-gray-600 lg:whitespace-nowrap">
                       {`TruthSuite (YCombinator W23)`}
                     </div>
                   </div>
@@ -248,13 +249,19 @@ function App() {
                   </div>
                   <ul className="list-disc list-outside text-xl lg:text-2xl text-[#FEFCE1] pt-10 pl-6">
                     <li>
-                      Building a platform to speed up searching through cases of
-                      Law Firms.
+                      Building an AI Legal Assistant and Document Summarization
+                      Tools for law firms.
                     </li>
                     <li>
-                      {`Built a platform from scratch for fine-tuning open-source LLM models, running inferences, and
-managing datasets which got us our initial 10 customers. Developed a chatbot capable of
-interacting with any webpage.`}
+                      {`Built a platform from scratch for fine-tuning open-source LLMs, running inferences, and managing datasets, which helped us acquire our first 10 customers.`}
+                    </li>
+                    <li>
+                      Developed a web app capable of launching a chatbot on any
+                      webpage, with over 1,000 daily active users.
+                    </li>
+                    <li>
+                      As founding engineer, I developed almost 90% of the whole
+                      product.
                     </li>
                   </ul>
                 </div>
@@ -338,7 +345,10 @@ TheHyperBrand.`}
                 </div>
                 <div className="flex justify-center items-center relative w-full">
                   <div className="relative bg-white">
-                    <img src="./upgrad-logo.jpg" className="h-[160px] lg:h-[260px]" />
+                    <img
+                      src="./upgrad-logo.jpg"
+                      className="h-[160px] lg:h-[260px]"
+                    />
                   </div>
                 </div>
               </div>
@@ -361,21 +371,23 @@ TheHyperBrand.`}
                   </div>
                   <ul className="list-disc list-outside text-xl lg:text-2xl text-[#FEFCE1] pt-10 pl-6">
                     <li>
-                      Worked on a project displaying real-time dynamic incident
-                      content on HERE Maps.
+                      Integrated real-time dynamic incident content into HERE
+                      Maps to enhance situational awareness.
                     </li>
                     <li>
-                      {`Designed an interactive dashboard that visualised alarms and alerts for application verification,
-enabling immediate access to critical data and improving overall operational efficiency.`}
+                      {`Designed and developed an interactive dashboard for visualizing alarms and alerts, streamlining application verification and accelerating incident response.`}
                     </li>
                     <li>
-                      {`Enhanced map matching of incidents, resulting in a nearly 20% improvement.`}
+                      {`Improved incident map-matching algorithms, increasing accuracy by ~20%.`}
                     </li>
                   </ul>
                 </div>
                 <div className="flex justify-center items-center relative w-full">
                   <div className="relative bg-white">
-                    <img src="./here-logo.png" className="h-[220px] lg:h-[320px]" />
+                    <img
+                      src="./here-logo.png"
+                      className="h-[220px] lg:h-[320px]"
+                    />
                   </div>
                 </div>
               </div>
@@ -483,16 +495,15 @@ enabling immediate access to critical data and improving overall operational eff
                 TheHyperBrand
               </div>
               <div className="text-[#FEFCE1] text-xl lg:text-2xl font-light">
-                Platform to create SEO-optimized AI-generated blogs and social
-                media posts to drive more traffic, and hotter leads. You can
-                also create backlinks and do keyword research. <br />
-                Everything that one needs to do for SEO such as keyword
-                analysis, blog writing & publishing, guest posting,
-                back-linking, and more all under one roof at 1/10th of the
-                market price.
+                A platform designed to generate SEO-optimized AI blogs and
+                social media posts that boost traffic and drive high-converting
+                leads. It offers everything you need for effective SEO—keyword
+                analysis, blog writing and publishing, guest posting,
+                backlinking, and more—all in one place at just a tenth of the
+                typical market cost.
                 <br />
-                All brands have to do is give us their website link, a
-                description of their business, and their top competitors.
+                Simply provide your website link, a brief business description,
+                and a list of top competitors—and we handle the rest.
               </div>
             </div>
             <div className="flex flex-col justify-start items-start w-full">
@@ -509,9 +520,7 @@ enabling immediate access to critical data and improving overall operational eff
                 services to the users who need them by charging them on per
                 minute basis. So it will be like a marketplace of experts and
                 people who need help can come and book them to resolve their
-                doubts. Other than experts if some famous youtube, Instagram,
-                etc creator onboard and is ready to talk live with their
-                followers will be a good revenue stream for them.
+                doubts.
               </div>
             </div>
             <div className="flex flex-col justify-start items-start w-full">
@@ -524,13 +533,24 @@ enabling immediate access to critical data and improving overall operational eff
                 GuideKaka
               </div>
               <div className="text-[#FEFCE1] text-xl lg:text-2xl font-light">
-                Platform where people can offer 1-1 calls for their expert
-                services to the users who need them by charging them on per
-                minute basis. So it will be like a marketplace of experts and
-                people who need help can come and book them to resolve their
-                doubts. Other than experts if some famous youtube, Instagram,
-                etc creator onboard and is ready to talk live with their
-                followers will be a good revenue stream for them.
+                GuideKaka is a blog website. It’s your go-to platform for
+                verified details on tourist attractions, schools, and more—all
+                backed by 100% verified content.
+              </div>
+            </div>
+            <div className="flex flex-col justify-start items-start w-full">
+              <img src="thb.gif" className="h-[400px] rounded-xl" />
+            </div>
+          </div>
+          <div className="flex flex-col lg:flex-row justify-start items-start w-full border-2 border-[#FEFCE1] rounded-xl p-10 cursor-pointer hover:border-4 gap-10">
+            <div className="flex flex-col justify-start items-start w-full gap-10">
+              <div className="text-[#FEFCE1] text-xl lg:text-2xl font-extrabold">
+                Boldena
+              </div>
+              <div className="text-[#FEFCE1] text-xl lg:text-2xl font-light">
+                A website which can automatically create and publish posts using
+                articles from Stackoverflow and Reddit without any human
+                interaction.
               </div>
             </div>
             <div className="flex flex-col justify-start items-start w-full">
@@ -576,8 +596,8 @@ enabling immediate access to critical data and improving overall operational eff
             </div>
           </div>
         </div>
-        <div className="w-full bg-black h-screen flex justify-center items-center">
-          <img src="flex.png" className="h-full"/>
+        <div className="w-full bg-black flex justify-center items-center">
+          <img src="flex.png" className="h-[260px] lg:h-[600px] pb-10" />
         </div>
         <div
           id="footer"
