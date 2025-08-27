@@ -624,7 +624,7 @@ TheHyperBrand.`}
           </div>
         </div>
         <div className="w-full bg-black flex justify-center items-center">
-          <img src="flex.png" className="h-[260px] lg:h-[600px] pb-10" />
+          <img src="flex.webp" className="h-[260px] lg:h-[600px] pb-10" />
         </div>
         <div
           id="footer"
