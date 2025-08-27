@@ -2,6 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import "./App.css";
 import Hero from "./components/hero/Hero";
+import { initMixpanel } from "./lib/analytics/mixpanel";
 
 function App() {
   const [screenDim, setScreenDim] = useState(null);
@@ -25,6 +26,7 @@ function App() {
 
   useEffect(() => {
     initPage();
+    initMixpanel();
   }, []);
 
   const initPage = () => {
