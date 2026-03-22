@@ -90,7 +90,7 @@ function App() {
         (scrollTop - component3Start) / spacerHeight;
       const clampedProgress = Math.max(
         0,
-        Math.min(1, horizontalScrollProgress)
+        Math.min(1, horizontalScrollProgress),
       );
 
       // Calculate which horizontal item should be shown
@@ -100,7 +100,7 @@ function App() {
       const stepProgress = step - currentIndex;
 
       setCurrentHorizontalIndex(
-        Math.min(currentIndex, horizontalItems.length - 1)
+        Math.min(currentIndex, horizontalItems.length - 1),
       );
 
       // Apply horizontal translation
@@ -562,7 +562,7 @@ TheHyperBrand.`}
             onClick={() =>
               window.open(
                 "https://nuoser-frontend.azurewebsites.net/",
-                "_blank"
+                "_blank",
               )
             }
             className="flex flex-col lg:flex-row justify-start items-start w-full border-2 border-[#FEFCE1] rounded-xl p-10 cursor-pointer hover:border-4 gap-10"
@@ -662,6 +662,21 @@ TheHyperBrand.`}
                 className="cursor-pointer hover:underline"
               >
                 Resume
+              </a>
+              <a
+                href="/training_plan.html"
+                target="_blank"
+                className="cursor-pointer hover:underline"
+              >
+                Training Plan
+              </a>
+
+              <a
+                href="/dunk_plan.html"
+                target="_blank"
+                className="cursor-pointer hover:underline"
+              >
+                Dunk Plan
               </a>
             </div>
             <div className="text-xl font-light flex flex-col gap-4 w-full items-start justify-start">

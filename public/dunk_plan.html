@@ -1,0 +1,397 @@
+
+<style>
+  .card { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: 14px 16px; margin-bottom: 10px; }
+  .ex-card { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: 12px 14px; margin-bottom: 8px; cursor:pointer; transition: border-color .15s; }
+  .ex-card:hover { border-color: var(--color-border-secondary); }
+  .ex-card.active { border-color: var(--color-border-info); }
+  .ex-header { display:flex; align-items:center; justify-content:space-between; }
+  .ex-body { display:none; margin-top:10px; padding-top:10px; border-top:0.5px solid var(--color-border-tertiary); }
+  .ex-body.open { display:block; }
+  .badge { display:inline-block; font-size:11px; font-weight:500; padding:2px 8px; border-radius:10px; }
+  .tab { padding:5px 12px; border-radius:20px; font-size:12px; font-weight:500; cursor:pointer; background:var(--color-background-secondary); color:var(--color-text-secondary); border:0.5px solid var(--color-border-tertiary); transition:all .15s; }
+  .tab.active { background:var(--color-background-info); color:var(--color-text-info); border-color:transparent; }
+  .prog-row { display:flex; align-items:center; gap:8px; margin:5px 0; font-size:12px; }
+  .prog-label { width:130px; color:var(--color-text-secondary); flex-shrink:0; }
+  .prog-track { flex:1; height:5px; background:var(--color-background-secondary); border-radius:3px; overflow:hidden; }
+  .prog-fill { height:100%; border-radius:3px; }
+  .timer-ring { transition: stroke-dashoffset 1s linear; }
+  .step-dot { width:8px; height:8px; border-radius:50%; display:inline-block; flex-shrink:0; }
+  .tip-box { background:var(--color-background-warning); border-radius:var(--border-radius-md); padding:8px 12px; font-size:12px; color:var(--color-text-warning); margin-top:8px; }
+  .info-box { background:var(--color-background-info); border-radius:var(--border-radius-md); padding:8px 12px; font-size:12px; color:var(--color-text-info); margin-top:8px; }
+  .week-badge { font-size:10px; font-weight:500; padding:1px 6px; border-radius:8px; }
+</style>
+
+<div style="padding:4px 0 0">
+
+<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
+  <div>
+    <div style="font-size:18px;font-weight:500;color:var(--color-text-primary)">Dunk training — room workout</div>
+    <div style="font-size:12px;color:var(--color-text-secondary);margin-top:2px">Currently: touch board with fingers &nbsp;·&nbsp; Goal: dunk &nbsp;·&nbsp; ~4–6 inch gain needed</div>
+  </div>
+  <div style="text-align:right;">
+    <div style="font-size:22px;font-weight:500;color:var(--color-text-primary)">15</div>
+    <div style="font-size:11px;color:var(--color-text-secondary)">min / day</div>
+  </div>
+</div>
+
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:16px;">
+  <div style="background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:10px;">
+    <div style="font-size:11px;color:var(--color-text-secondary)">Gap to dunk</div>
+    <div style="font-size:18px;font-weight:500;color:var(--color-text-primary)">4–6"</div>
+    <div style="font-size:11px;color:var(--color-text-secondary);margin-top:2px">very achievable</div>
+  </div>
+  <div style="background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:10px;">
+    <div style="font-size:11px;color:var(--color-text-secondary)">Timeline</div>
+    <div style="font-size:18px;font-weight:500;color:var(--color-text-primary)">8–12 wk</div>
+    <div style="font-size:11px;color:var(--color-text-secondary);margin-top:2px">with consistency</div>
+  </div>
+  <div style="background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:10px;">
+    <div style="font-size:11px;color:var(--color-text-secondary)">No equipment</div>
+    <div style="font-size:18px;font-weight:500;color:var(--color-text-primary)">100%</div>
+    <div style="font-size:11px;color:var(--color-text-secondary);margin-top:2px">just your room</div>
+  </div>
+</div>
+
+<div style="display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap;">
+  <div class="tab active" onclick="switchTab('routine',this)">Daily routine</div>
+  <div class="tab" onclick="switchTab('timer',this)">Session timer</div>
+  <div class="tab" onclick="switchTab('science',this)">Why it works</div>
+  <div class="tab" onclick="switchTab('progress',this)">4-week plan</div>
+</div>
+
+<div id="tab-routine">
+  <div style="font-size:12px;color:var(--color-text-secondary);margin-bottom:10px;">15 min total — do this every day. Can split morning + night. Tap any exercise to see how to do it.</div>
+
+  <div id="exlist"></div>
+  <div class="info-box">Do this AFTER your morning run, not before. Your legs need to be warm. On rest days (Sunday), do only the ankle/calf circuit — skip the jumps.</div>
+</div>
+
+<div id="tab-timer" style="display:none;">
+  <div style="text-align:center;padding:20px 0;">
+    <svg width="160" height="160" viewBox="0 0 160 160" style="display:block;margin:0 auto 16px;">
+      <circle cx="80" cy="80" r="68" fill="none" stroke="var(--color-border-tertiary)" stroke-width="6"/>
+      <circle id="timer-ring" cx="80" cy="80" r="68" fill="none" stroke="#378ADD" stroke-width="6"
+        stroke-dasharray="427" stroke-dashoffset="0" stroke-linecap="round"
+        transform="rotate(-90 80 80)" class="timer-ring"/>
+      <text id="timer-display" x="80" y="76" text-anchor="middle" font-size="32" font-weight="500" fill="var(--color-text-primary)">0:45</text>
+      <text id="timer-exname" x="80" y="100" text-anchor="middle" font-size="11" fill="var(--color-text-secondary)">Ready</text>
+      <text id="timer-reps" x="80" y="116" text-anchor="middle" font-size="11" fill="var(--color-text-secondary)"></text>
+    </svg>
+    <div style="font-size:13px;color:var(--color-text-secondary);margin-bottom:16px;" id="timer-next">Press start to begin session</div>
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
+      <button onclick="startTimer()" id="btn-start" style="min-width:80px;">Start</button>
+      <button onclick="skipEx()" id="btn-skip" style="min-width:80px;">Skip</button>
+      <button onclick="resetTimer()" style="min-width:80px;">Reset</button>
+    </div>
+    <div style="margin-top:16px;display:flex;gap:6px;justify-content:center;flex-wrap:wrap;" id="timer-dots"></div>
+  </div>
+</div>
+
+<div id="tab-science" style="display:none;">
+  <div class="card" style="margin-bottom:10px;">
+    <div style="font-size:14px;font-weight:500;margin-bottom:8px;">Why you can touch the board but can't dunk yet</div>
+    <div style="font-size:13px;color:var(--color-text-secondary);line-height:1.7;">You're at ~9 feet reach on a ~10 foot rim. You need roughly 4–6 more inches. At 6ft with a ~7'10" standing reach, a 25–28" vertical gets you there. Most people at your fitness level are jumping 18–22". This routine specifically targets the two things that give the fastest gains: <span style="color:var(--color-text-primary);font-weight:500;">reactive strength</span> (how fast your muscle contracts on landing) and <span style="color:var(--color-text-primary);font-weight:500;">ankle/calf power</span> (massively undertrained in gym work).</div>
+  </div>
+  <div class="card" style="margin-bottom:10px;">
+    <div style="font-size:14px;font-weight:500;margin-bottom:10px;">What actually limits your jump</div>
+    <div class="prog-row"><span class="prog-label">Reactive strength</span><div class="prog-track"><div class="prog-fill" style="width:85%;background:#185FA5;"></div></div><span style="font-size:11px;color:var(--color-text-secondary)">biggest gain</span></div>
+    <div class="prog-row"><span class="prog-label">Calf / ankle power</span><div class="prog-track"><div class="prog-fill" style="width:75%;background:#185FA5;"></div></div><span style="font-size:11px;color:var(--color-text-secondary)">most ignored</span></div>
+    <div class="prog-row"><span class="prog-label">Hip flexor tightness</span><div class="prog-track"><div class="prog-fill" style="width:65%;background:#854F0B;"></div></div><span style="font-size:11px;color:var(--color-text-secondary)">limits arm swing</span></div>
+    <div class="prog-row"><span class="prog-label">Squat strength</span><div class="prog-track"><div class="prog-fill" style="width:40%;background:#0F6E56;"></div></div><span style="font-size:11px;color:var(--color-text-secondary)">helps but you have this</span></div>
+    <div class="prog-row"><span class="prog-label">Body weight</span><div class="prog-track"><div class="prog-fill" style="width:20%;background:#993C1D;"></div></div><span style="font-size:11px;color:var(--color-text-secondary)">less important</span></div>
+  </div>
+  <div class="card">
+    <div style="font-size:14px;font-weight:500;margin-bottom:8px;">The arm swing secret</div>
+    <div style="font-size:13px;color:var(--color-text-secondary);line-height:1.7;">A proper double-arm swing adds 3–4 inches instantly — no training required. Arms start low at takeoff, swing aggressively upward as you leave the ground. Most people leave this on the table. Practice it separately against a wall — just jumping and swinging arms without worrying about height.</div>
+  </div>
+</div>
+
+<div id="tab-progress" style="display:none;">
+  <div style="font-size:12px;color:var(--color-text-secondary);margin-bottom:12px;">Progressive overload applied to jump training. Each week gets harder. Don't skip ahead.</div>
+  <div id="weeklist"></div>
+  <div class="tip-box">Measure your jump every Sunday morning — same wall, same spot, same time. Chalk your fingers. Track the mark. You should see 1–2 inches per 2 weeks early on.</div>
+</div>
+
+</div>
+
+<script>
+const exercises = [
+  {
+    name: "Jump rope / ankle bounces",
+    sets: "3 min continuous",
+    rest: "60s",
+    category: "Warm-up",
+    catColor: "#639922", catBg: "#EAF3DE", catText: "#27500A",
+    duration: 45,
+    how: "No rope needed — just bounce on your toes rapidly like you're jumping rope. Stay on the balls of your feet the whole time. This activates the Achilles tendon and warms up fast-twitch fibres. Critical: don't let your heels touch the ground.",
+    why: "Achilles tendon stores and releases elastic energy — this is the single biggest untapped source of jump height."
+  },
+  {
+    name: "Squat jumps",
+    sets: "4×8 reps",
+    rest: "60s",
+    category: "Power",
+    catColor: "#185FA5", catBg: "#E6F1FB", catText: "#0C447C",
+    duration: 45,
+    how: "Squat down to parallel, explode upward as fast as possible, land softly bending knees. The key is the SPEED of the concentric phase — go up as explosively as you can. Don't pause at the bottom.",
+    why: "Trains the fast-twitch muscle fibres directly. The faster you can produce force, the higher you jump."
+  },
+  {
+    name: "Depth drops",
+    sets: "3×6 reps",
+    rest: "90s",
+    category: "Reactive",
+    catColor: "#993556", catBg: "#FBEAF0", catText: "#72243E",
+    duration: 60,
+    how: "Stand on a step or raised surface (even a book stack 4–6 inches high). Step OFF (don't jump), land on both feet, and IMMEDIATELY jump as high as possible the moment you touch the ground. The ground contact should be under 0.2 seconds — think of the floor as hot.",
+    why: "This is the most effective exercise for reactive strength. It teaches your nervous system to switch from landing to jumping instantly — this is what separates dunkers from non-dunkers at the same strength level."
+  },
+  {
+    name: "Single-leg calf raises (slow)",
+    sets: "3×20 each leg",
+    rest: "45s",
+    category: "Calf",
+    catColor: "#854F0B", catBg: "#FAEEDA", catText: "#633806",
+    duration: 60,
+    how: "Stand on one foot on a step edge so your heel hangs off. Lower heel slowly for 3 seconds, rise up on toes for 1 second, pause 1 second at top. Use a wall for balance. Feel the full stretch at the bottom — this is the range that builds power.",
+    why: "Calf and Achilles strength directly determines how much elastic energy you store on landing. Most people have weak calves relative to their squat strength."
+  },
+  {
+    name: "Tuck jumps",
+    sets: "3×6 reps",
+    rest: "90s",
+    category: "Power",
+    catColor: "#185FA5", catBg: "#E6F1FB", catText: "#0C447C",
+    duration: 45,
+    how: "Jump as high as possible and pull both knees up to your chest at the peak. Don't rush — focus on maximum height first, then try to get your knees up. Land softly. Full rest between sets — these should be max effort every rep.",
+    why: "Forces you to produce maximum jump height since you have to pull your body up. Also trains the hip flexors to fire quickly, which is key for the knee-tuck dunk motion."
+  },
+  {
+    name: "Hip flexor stretch + lunge stretch",
+    sets: "2 min each side",
+    rest: "—",
+    category: "Mobility",
+    catColor: "#0F6E56", catBg: "#E1F5EE", catText: "#085041",
+    duration: 90,
+    how: "Kneeling lunge — back knee on floor, front foot forward. Push hips forward gently until you feel a deep stretch in the front of the back leg's hip. Hold 60s each side. Tight hip flexors physically limit how high your knee can come up during a jump.",
+    why: "Running and sitting tightens hip flexors. Loose hip flexors = more knee height on the jump = more clearance over the rim."
+  },
+  {
+    name: "Approach jump practice",
+    sets: "10 reps",
+    rest: "30s",
+    category: "Skill",
+    catColor: "#533AB7", catBg: "#EEEDFE", catText: "#3C3489",
+    duration: 30,
+    how: "3-step approach — left-right-left for right-hand dunk (or right-left-right). On the last step, plant hard and swing both arms from low to high as you jump. Practice this in your room against the ceiling or a mark on the wall. The approach adds 4–6 inches over a standing jump.",
+    why: "Most of your vertical gap will be closed by technique alone. Running approach + arm swing is worth 6–8 inches over a standing flat-footed jump."
+  },
+];
+
+const weeks = [
+  {
+    week: 1, label: "Build the base",
+    color: "#185FA5", bg: "#E6F1FB", textColor: "#0C447C",
+    items: [
+      "Ankle bounces: 3 min daily",
+      "Squat jumps: 3×6 (not max — focus on form)",
+      "Single-leg calf raises: 2×15",
+      "Hip flexor stretch: 2 min each side",
+      "No depth drops yet — tendons need to adapt first",
+    ],
+    note: "Soreness in calves and Achilles is expected. It's normal. Do NOT skip the stretching."
+  },
+  {
+    week: 2, label: "Add reactive work",
+    color: "#0F6E56", bg: "#E1F5EE", textColor: "#085041",
+    items: [
+      "Ankle bounces: 3 min daily",
+      "Squat jumps: 4×8 — now go max effort",
+      "Depth drops: 3×5 — introduce carefully",
+      "Single-leg calf raises: 3×18",
+      "Tuck jumps: 2×5",
+      "Approach jump practice: 10 reps daily",
+    ],
+    note: "Depth drops will make your legs feel heavy the next day. That's the adaptation happening."
+  },
+  {
+    week: 3, label: "Increase intensity",
+    color: "#854F0B", bg: "#FAEEDA", textColor: "#633806",
+    items: [
+      "Ankle bounces: 3 min + 1 min single leg",
+      "Squat jumps: 4×10",
+      "Depth drops: 3×6 — increase drop height slightly",
+      "Single-leg calf raises: 3×20 with pause at top",
+      "Tuck jumps: 3×6",
+      "Approach jump: 15 reps — touch something high",
+    ],
+    note: "By end of week 3 you should be noticeably higher on approach jumps. Measure on Sunday."
+  },
+  {
+    week: 4, label: "Peak + test",
+    color: "#533AB7", bg: "#EEEDFE", textColor: "#3C3489",
+    items: [
+      "Full routine at full intensity Mon–Fri",
+      "Saturday: rest legs completely",
+      "Sunday: fresh legs — go to the court and test",
+      "Depth drops: 4×6",
+      "Squat jumps: 5×8 — maximum explosion",
+      "Approach jump: 20 reps — chase the rim",
+    ],
+    note: "Fresh legs on test day are critical. Don't train Saturday. You'll jump 1–2 inches higher on rested legs."
+  },
+];
+
+const exList = document.getElementById('exlist');
+exercises.forEach((ex, i) => {
+  const d = document.createElement('div');
+  d.className = 'ex-card';
+  d.innerHTML = `
+    <div class="ex-header" onclick="toggleEx(${i})">
+      <div style="display:flex;align-items:center;gap:10px;">
+        <div style="width:28px;height:28px;border-radius:50%;background:${ex.catBg};display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;color:${ex.catText};flex-shrink:0;">${i+1}</div>
+        <div>
+          <div style="font-size:14px;font-weight:500;color:var(--color-text-primary);">${ex.name}</div>
+          <div style="font-size:12px;color:var(--color-text-secondary);margin-top:1px;">${ex.sets} &nbsp;·&nbsp; rest ${ex.rest}</div>
+        </div>
+      </div>
+      <span class="badge" style="background:${ex.catBg};color:${ex.catText};">${ex.category}</span>
+    </div>
+    <div class="ex-body" id="ex-body-${i}">
+      <div style="font-size:13px;color:var(--color-text-primary);margin-bottom:6px;font-weight:500;">How to do it</div>
+      <div style="font-size:13px;color:var(--color-text-secondary);line-height:1.7;margin-bottom:8px;">${ex.how}</div>
+      <div style="font-size:13px;color:var(--color-text-primary);margin-bottom:4px;font-weight:500;">Why it works</div>
+      <div style="font-size:13px;color:var(--color-text-secondary);line-height:1.7;">${ex.why}</div>
+    </div>
+  `;
+  exList.appendChild(d);
+});
+
+function toggleEx(i) {
+  const body = document.getElementById(`ex-body-${i}`);
+  const card = body.parentElement;
+  const open = body.classList.contains('open');
+  body.classList.toggle('open', !open);
+  card.classList.toggle('active', !open);
+}
+
+const wkList = document.getElementById('weeklist');
+weeks.forEach(w => {
+  const d = document.createElement('div');
+  d.className = 'card';
+  d.style.marginBottom = '10px';
+  d.innerHTML = `
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+      <div style="width:32px;height:32px;border-radius:50%;background:${w.bg};display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:500;color:${w.textColor};flex-shrink:0;">W${w.week}</div>
+      <div>
+        <div style="font-size:14px;font-weight:500;color:var(--color-text-primary);">Week ${w.week} — ${w.label}</div>
+      </div>
+    </div>
+    ${w.items.map(it=>`<div style="display:flex;align-items:flex-start;gap:8px;padding:4px 0;font-size:13px;color:var(--color-text-secondary);"><div style="width:6px;height:6px;border-radius:50%;background:${w.color};margin-top:6px;flex-shrink:0;"></div>${it}</div>`).join('')}
+    <div class="tip-box" style="margin-top:10px;">${w.note}</div>
+  `;
+  wkList.appendChild(d);
+});
+
+const timerExercises = exercises.map(e => ({name: e.name, sets: e.sets, duration: e.duration}));
+let timerIdx = 0, timeLeft = 0, interval = null, totalEx = timerExercises.length;
+const display = document.getElementById('timer-display');
+const exName = document.getElementById('timer-exname');
+const exReps = document.getElementById('timer-reps');
+const nextLabel = document.getElementById('timer-next');
+const ring = document.getElementById('timer-ring');
+const CIRC = 427;
+
+function buildDots() {
+  const dots = document.getElementById('timer-dots');
+  dots.innerHTML = timerExercises.map((e,i) =>
+    `<div id="dot-${i}" style="width:8px;height:8px;border-radius:50%;background:${i===0?'#378ADD':'var(--color-border-secondary)'};transition:background .3s;"></div>`
+  ).join('');
+}
+buildDots();
+
+function updateRing(pct) {
+  ring.style.strokeDashoffset = CIRC * (1 - pct);
+}
+
+function updateDisplay() {
+  const m = Math.floor(timeLeft / 60);
+  const s = timeLeft % 60;
+  display.textContent = m + ':' + String(s).padStart(2,'0');
+  const ex = timerExercises[timerIdx];
+  if (ex) {
+    updateRing(timeLeft / ex.duration);
+    exName.textContent = ex.name;
+    exReps.textContent = ex.sets;
+  }
+}
+
+function startTimer() {
+  if (interval) { clearInterval(interval); interval = null; document.getElementById('btn-start').textContent = 'Resume'; return; }
+  if (timerIdx >= totalEx) { resetTimer(); return; }
+  if (timeLeft === 0) {
+    timeLeft = timerExercises[timerIdx].duration;
+    updateRing(1);
+  }
+  document.getElementById('btn-start').textContent = 'Pause';
+  interval = setInterval(() => {
+    timeLeft--;
+    updateDisplay();
+    if (timeLeft <= 0) {
+      clearInterval(interval); interval = null;
+      timerIdx++;
+      if (timerIdx < totalEx) {
+        document.getElementById(`dot-${timerIdx-1}`).style.background = '#639922';
+        document.getElementById(`dot-${timerIdx}`).style.background = '#378ADD';
+        timeLeft = timerExercises[timerIdx].duration;
+        nextLabel.textContent = 'Next: ' + (timerIdx+1 < totalEx ? timerExercises[timerIdx+1].name : 'done!');
+        document.getElementById('btn-start').textContent = 'Start';
+        updateDisplay();
+      } else {
+        display.textContent = 'Done!';
+        exName.textContent = 'Session complete';
+        exReps.textContent = '';
+        nextLabel.textContent = 'Great work — rest and recover';
+        document.getElementById('btn-start').textContent = 'Start';
+        updateRing(1);
+        timerExercises.forEach((_,i) => { document.getElementById(`dot-${i}`).style.background = '#639922'; });
+      }
+    }
+  }, 1000);
+}
+
+function skipEx() {
+  if (interval) { clearInterval(interval); interval = null; }
+  if (timerIdx < totalEx) {
+    document.getElementById(`dot-${timerIdx}`).style.background = 'var(--color-border-secondary)';
+    timerIdx++;
+    if (timerIdx < totalEx) {
+      timeLeft = timerExercises[timerIdx].duration;
+      document.getElementById(`dot-${timerIdx}`).style.background = '#378ADD';
+      nextLabel.textContent = 'Next: ' + (timerIdx+1 < totalEx ? timerExercises[timerIdx+1].name : 'last one!');
+      document.getElementById('btn-start').textContent = 'Start';
+      updateDisplay();
+    }
+  }
+}
+
+function resetTimer() {
+  if (interval) { clearInterval(interval); interval = null; }
+  timerIdx = 0; timeLeft = 0;
+  display.textContent = '0:45';
+  exName.textContent = 'Ready';
+  exReps.textContent = '';
+  nextLabel.textContent = 'Press start to begin session';
+  document.getElementById('btn-start').textContent = 'Start';
+  updateRing(1);
+  buildDots();
+}
+
+function switchTab(tab, el) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  ['routine','timer','science','progress'].forEach(t => {
+    document.getElementById(`tab-${t}`).style.display = t === tab ? 'block' : 'none';
+  });
+}
+</script>
