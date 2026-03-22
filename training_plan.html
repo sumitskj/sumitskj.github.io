@@ -1,0 +1,365 @@
+
+<style>
+  .day-card { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: 14px 16px; margin-bottom: 10px; cursor: pointer; transition: border-color .15s; }
+  .day-card:hover { border-color: var(--color-border-secondary); }
+  .day-card.active { border-color: var(--color-border-info); }
+  .day-header { display:flex; align-items:center; justify-content:space-between; }
+  .day-label { display:flex; align-items:center; gap:10px; }
+  .day-badge { width:36px; height:36px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:500; flex-shrink:0; }
+  .day-title { font-size:15px; font-weight:500; color:var(--color-text-primary); }
+  .day-subtitle { font-size:12px; color:var(--color-text-secondary); margin-top:2px; }
+  .tag { display:inline-block; font-size:11px; font-weight:500; padding:2px 8px; border-radius:12px; margin-right:4px; }
+  .expand-icon { font-size:16px; color:var(--color-text-tertiary); transition:transform .2s; }
+  .expand-icon.open { transform:rotate(180deg); }
+  .day-body { display:none; margin-top:12px; border-top:0.5px solid var(--color-border-tertiary); padding-top:12px; }
+  .day-body.open { display:block; }
+  .section-title { font-size:11px; font-weight:500; color:var(--color-text-secondary); text-transform:uppercase; letter-spacing:.06em; margin:12px 0 6px; }
+  .section-title:first-child { margin-top:0; }
+  .workout-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+  .workout-item { background:var(--color-background-secondary); border-radius:var(--border-radius-md); padding:8px 10px; }
+  .workout-name { font-size:13px; font-weight:500; color:var(--color-text-primary); }
+  .workout-detail { font-size:12px; color:var(--color-text-secondary); margin-top:2px; }
+  .note-box { background:var(--color-background-info); border-radius:var(--border-radius-md); padding:8px 12px; font-size:12px; color:var(--color-text-info); margin-top:8px; }
+  .swim-box { background:var(--color-background-secondary); border-left:3px solid #378ADD; border-radius:0 var(--border-radius-md) var(--border-radius-md) 0; padding:8px 12px; margin-bottom:8px; }
+  .tabs { display:flex; gap:6px; margin-bottom:14px; flex-wrap:wrap; }
+  .tab { padding:5px 12px; border-radius:20px; font-size:12px; font-weight:500; cursor:pointer; background:var(--color-background-secondary); color:var(--color-text-secondary); border:0.5px solid var(--color-border-tertiary); transition:all .15s; }
+  .tab.active { background:var(--color-background-info); color:var(--color-text-info); border-color:transparent; }
+  .macro-bar { height:6px; border-radius:3px; margin-top:4px; }
+  .progress-row { display:flex; align-items:center; gap:8px; margin:6px 0; font-size:12px; }
+  .progress-label { width:90px; color:var(--color-text-secondary); flex-shrink:0; }
+  .progress-track { flex:1; height:6px; background:var(--color-background-secondary); border-radius:3px; overflow:hidden; }
+  .progress-fill { height:100%; border-radius:3px; }
+  .meal-row { display:flex; justify-content:space-between; align-items:baseline; padding:5px 0; border-bottom:0.5px solid var(--color-border-tertiary); font-size:13px; }
+  .meal-row:last-child { border-bottom:none; }
+  .meal-name { color:var(--color-text-primary); font-weight:500; }
+  .meal-detail { color:var(--color-text-secondary); font-size:12px; }
+</style>
+
+<div style="padding:4px 0 0">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px;">
+    <div>
+      <div style="font-size:18px;font-weight:500;color:var(--color-text-primary)">Your weekly plan</div>
+      <div style="font-size:12px;color:var(--color-text-secondary);margin-top:2px">70kg · 6ft · Vegetarian · Run + Gym + Swim + Basketball + Badminton + Calisthenics</div>
+    </div>
+    <div style="text-align:right;">
+      <div style="font-size:22px;font-weight:500;color:var(--color-text-primary)">~2800</div>
+      <div style="font-size:11px;color:var(--color-text-secondary)">kcal / day</div>
+    </div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0 16px;">
+    <div style="background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:10px;">
+      <div style="font-size:11px;color:var(--color-text-secondary)">Protein target</div>
+      <div style="font-size:18px;font-weight:500;color:var(--color-text-primary)">155g</div>
+      <div class="macro-bar" style="background:#378ADD;"></div>
+    </div>
+    <div style="background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:10px;">
+      <div style="font-size:11px;color:var(--color-text-secondary)">Carbs</div>
+      <div style="font-size:18px;font-weight:500;color:var(--color-text-primary)">340g</div>
+      <div class="macro-bar" style="background:#639922;"></div>
+    </div>
+    <div style="background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:10px;">
+      <div style="font-size:11px;color:var(--color-text-secondary)">Fats</div>
+      <div style="font-size:18px;font-weight:500;color:var(--color-text-primary)">72g</div>
+      <div class="macro-bar" style="background:#BA7517;"></div>
+    </div>
+  </div>
+
+  <div class="tabs">
+    <div class="tab active" onclick="switchView('schedule',this)">Schedule</div>
+    <div class="tab" onclick="switchView('nutrition',this)">Nutrition</div>
+    <div class="tab" onclick="switchView('skills',this)">Skills tracker</div>
+    <div class="tab" onclick="switchView('swim',this)">Swim guide</div>
+  </div>
+
+  <div id="view-schedule"></div>
+
+  <div id="view-nutrition" style="display:none;">
+    <div style="font-size:13px;color:var(--color-text-secondary);margin-bottom:12px;">Sample daily meal plan — bump carbs +20g on swim days</div>
+    <div style="background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:14px 16px;margin-bottom:10px;">
+      <div style="font-size:13px;font-weight:500;color:var(--color-text-secondary);margin-bottom:8px;">Pre-run (6:30 AM)</div>
+      <div class="meal-row"><span class="meal-name">Banana + 5 soaked almonds</span><span class="meal-detail">~120 kcal · quick carbs</span></div>
+    </div>
+    <div style="background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:14px 16px;margin-bottom:10px;">
+      <div style="font-size:13px;font-weight:500;color:var(--color-text-secondary);margin-bottom:8px;">Breakfast (8 AM)</div>
+      <div class="meal-row"><span class="meal-name">Protein shake (30g) + 300ml milk</span><span class="meal-detail">~200 kcal</span></div>
+      <div class="meal-row"><span class="meal-name">Poha / oats / upma</span><span class="meal-detail">~300 kcal · complex carbs</span></div>
+    </div>
+    <div style="background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:14px 16px;margin-bottom:10px;">
+      <div style="font-size:13px;font-weight:500;color:var(--color-text-secondary);margin-bottom:8px;">Mid-morning (11 AM)</div>
+      <div class="meal-row"><span class="meal-name">Soya chunks (50g dry) + curd</span><span class="meal-detail">~260 kcal · 26g protein</span></div>
+    </div>
+    <div style="background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:14px 16px;margin-bottom:10px;">
+      <div style="font-size:13px;font-weight:500;color:var(--color-text-secondary);margin-bottom:8px;">Lunch (1:30 PM)</div>
+      <div class="meal-row"><span class="meal-name">3 rotis + dal / rajma / chole</span><span class="meal-detail">~500 kcal · 20g protein</span></div>
+      <div class="meal-row"><span class="meal-name">Paneer sabji (100g paneer)</span><span class="meal-detail">~200 kcal · 18g protein</span></div>
+      <div class="meal-row"><span class="meal-name">Curd (200g)</span><span class="meal-detail">~120 kcal · 7g protein</span></div>
+    </div>
+    <div style="background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:14px 16px;margin-bottom:10px;">
+      <div style="font-size:13px;font-weight:500;color:var(--color-text-secondary);margin-bottom:8px;">Pre-gym snack (4:30 PM)</div>
+      <div class="meal-row"><span class="meal-name">Banana + roti + peanut butter</span><span class="meal-detail">~280 kcal</span></div>
+    </div>
+    <div style="background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:14px 16px;margin-bottom:10px;">
+      <div style="font-size:13px;font-weight:500;color:var(--color-text-secondary);margin-bottom:8px;">Post-gym (7:30 PM)</div>
+      <div class="meal-row"><span class="meal-name">Protein shake + milk</span><span class="meal-detail">~200 kcal · 30g protein · within 30 min</span></div>
+    </div>
+    <div style="background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:14px 16px;margin-bottom:10px;">
+      <div style="font-size:13px;font-weight:500;color:var(--color-text-secondary);margin-bottom:8px;">Dinner (9 PM)</div>
+      <div class="meal-row"><span class="meal-name">2–3 rotis + sabji + dal</span><span class="meal-detail">~480 kcal · 18g protein</span></div>
+      <div class="meal-row"><span class="meal-name">Milk (250ml) before bed</span><span class="meal-detail">~150 kcal · casein protein</span></div>
+    </div>
+    <div class="note-box">Sleep fix: avoid screens 1hr before bed. Eat dinner by 9 PM. Target 7–8hr sleep — this is when muscle is actually built.</div>
+  </div>
+
+  <div id="view-skills" style="display:none;">
+    <div style="font-size:13px;color:var(--color-text-secondary);margin-bottom:12px;">Current: 12 pullups, handstand hold. Goals: muscle up, front lever, HSPU.</div>
+    <div style="background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:14px 16px;margin-bottom:10px;">
+      <div style="font-size:14px;font-weight:500;margin-bottom:10px;">Muscle up progression</div>
+      <div class="progress-row"><span class="progress-label">False grip rows</span><div class="progress-track"><div class="progress-fill" style="width:100%;background:#185FA5;"></div></div><span style="font-size:11px;color:var(--color-text-secondary)">week 1–2</span></div>
+      <div class="progress-row"><span class="progress-label">High pullups</span><div class="progress-track"><div class="progress-fill" style="width:70%;background:#185FA5;"></div></div><span style="font-size:11px;color:var(--color-text-secondary)">week 1–3</span></div>
+      <div class="progress-row"><span class="progress-label">Muscle up negatives</span><div class="progress-track"><div class="progress-fill" style="width:40%;background:#185FA5;"></div></div><span style="font-size:11px;color:var(--color-text-secondary)">week 2–4</span></div>
+      <div class="progress-row"><span class="progress-label">Full muscle up</span><div class="progress-track"><div class="progress-fill" style="width:15%;background:#185FA5;"></div></div><span style="font-size:11px;color:var(--color-text-secondary)">week 4+</span></div>
+      <div class="note-box" style="margin-top:10px;">Hip pullup drill is the unlock. Pull bar to hip level, hold 2s, 3×5 every Tuesday.</div>
+    </div>
+    <div style="background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:14px 16px;margin-bottom:10px;">
+      <div style="font-size:14px;font-weight:500;margin-bottom:10px;">Front lever progression</div>
+      <div class="progress-row"><span class="progress-label">Tuck front lever</span><div class="progress-track"><div class="progress-fill" style="width:85%;background:#0F6E56;"></div></div><span style="font-size:11px;color:var(--color-text-secondary)">week 1–2</span></div>
+      <div class="progress-row"><span class="progress-label">Advanced tuck</span><div class="progress-track"><div class="progress-fill" style="width:50%;background:#0F6E56;"></div></div><span style="font-size:11px;color:var(--color-text-secondary)">week 2–3</span></div>
+      <div class="progress-row"><span class="progress-label">One-leg front lever</span><div class="progress-track"><div class="progress-fill" style="width:25%;background:#0F6E56;"></div></div><span style="font-size:11px;color:var(--color-text-secondary)">week 3–4</span></div>
+      <div class="progress-row"><span class="progress-label">Full front lever</span><div class="progress-track"><div class="progress-fill" style="width:5%;background:#0F6E56;"></div></div><span style="font-size:11px;color:var(--color-text-secondary)">month 2+</span></div>
+    </div>
+    <div style="background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:14px 16px;margin-bottom:10px;">
+      <div style="font-size:14px;font-weight:500;margin-bottom:10px;">Handstand pushup progression</div>
+      <div class="progress-row"><span class="progress-label">Pike pushups (elevated)</span><div class="progress-track"><div class="progress-fill" style="width:90%;background:#854F0B;"></div></div><span style="font-size:11px;color:var(--color-text-secondary)">week 1</span></div>
+      <div class="progress-row"><span class="progress-label">Wall HSPU negatives</span><div class="progress-track"><div class="progress-fill" style="width:60%;background:#854F0B;"></div></div><span style="font-size:11px;color:var(--color-text-secondary)">week 2–3</span></div>
+      <div class="progress-row"><span class="progress-label">Partial wall HSPU</span><div class="progress-track"><div class="progress-fill" style="width:30%;background:#854F0B;"></div></div><span style="font-size:11px;color:var(--color-text-secondary)">week 3–4</span></div>
+      <div class="progress-row"><span class="progress-label">Full wall HSPU</span><div class="progress-track"><div class="progress-fill" style="width:10%;background:#854F0B;"></div></div><span style="font-size:11px;color:var(--color-text-secondary)">month 2</span></div>
+    </div>
+    <div style="background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:14px 16px;margin-bottom:10px;">
+      <div style="font-size:14px;font-weight:500;margin-bottom:10px;">5K in 20 min — pace plan</div>
+      <div class="meal-row"><span class="meal-name">Easy runs (2×/week)</span><span class="meal-detail">5km @ 5:30–6 min/km</span></div>
+      <div class="meal-row"><span class="meal-name">Tempo run (1×/week)</span><span class="meal-detail">3km @ 4:10–4:20 min/km</span></div>
+      <div class="meal-row"><span class="meal-name">Intervals (1×/week)</span><span class="meal-detail">6×400m @ 3:45/km, 90s rest</span></div>
+    </div>
+  </div>
+
+  <div id="view-swim" style="display:none;">
+    <div style="font-size:13px;color:var(--color-text-secondary);margin-bottom:12px;">Swimming is placed on Wednesday and Sunday mornings — low CNS load, high recovery benefit, great for aerobic base.</div>
+
+    <div style="background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:14px 16px;margin-bottom:10px;">
+      <div style="font-size:14px;font-weight:500;margin-bottom:10px;">Why these days?</div>
+      <div class="meal-row"><span class="meal-name">Wednesday</span><span class="meal-detail">After Tue pull day — swim is active recovery, not fatigue</span></div>
+      <div class="meal-row"><span class="meal-name">Sunday</span><span class="meal-detail">Rest day — low intensity swim loosens muscles, aids sleep</span></div>
+      <div class="note-box" style="margin-top:8px;">Swimming on a heavy gym day (Mon/Thu/Fri) would crush recovery. These two days are strategically low weight-training load.</div>
+    </div>
+
+    <div style="background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:14px 16px;margin-bottom:10px;">
+      <div style="font-size:14px;font-weight:500;margin-bottom:10px;">Wednesday swim session (45 min)</div>
+      <div class="swim-box"><div style="font-size:13px;font-weight:500;color:var(--color-text-primary)">Warm-up — 200m easy freestyle</div><div style="font-size:12px;color:var(--color-text-secondary);margin-top:2px;">Focus on breathing rhythm, not pace</div></div>
+      <div class="swim-box"><div style="font-size:13px;font-weight:500;color:var(--color-text-primary)">Drill set — 4×50m kickboard</div><div style="font-size:12px;color:var(--color-text-secondary);margin-top:2px;">Legs only — builds kick strength + hip flexibility</div></div>
+      <div class="swim-box"><div style="font-size:13px;font-weight:500;color:var(--color-text-primary)">Main set — 6×100m freestyle</div><div style="font-size:12px;color:var(--color-text-secondary);margin-top:2px;">Moderate pace (80%), 20s rest between each</div></div>
+      <div class="swim-box"><div style="font-size:13px;font-weight:500;color:var(--color-text-primary)">Cool-down — 100m backstroke</div><div style="font-size:12px;color:var(--color-text-secondary);margin-top:2px;">Opens chest and shoulders post-Tuesday pulling</div></div>
+      <div style="font-size:12px;color:var(--color-text-secondary);margin-top:8px;">Total: ~1100m · aerobic + shoulder mobility</div>
+    </div>
+
+    <div style="background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:14px 16px;margin-bottom:10px;">
+      <div style="font-size:14px;font-weight:500;margin-bottom:10px;">Sunday swim session (30–40 min)</div>
+      <div class="swim-box"><div style="font-size:13px;font-weight:500;color:var(--color-text-primary)">Easy 800–1000m mixed strokes</div><div style="font-size:12px;color:var(--color-text-secondary);margin-top:2px;">Freestyle + backstroke + breaststroke, no pressure</div></div>
+      <div class="swim-box"><div style="font-size:13px;font-weight:500;color:var(--color-text-primary)">No intervals — just flow</div><div style="font-size:12px;color:var(--color-text-secondary);margin-top:2px;">This is recovery, not training. Keep HR under 140.</div></div>
+      <div style="font-size:12px;color:var(--color-text-secondary);margin-top:8px;">Total: ~900m · pure recovery swim</div>
+    </div>
+
+    <div style="background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:14px 16px;margin-bottom:10px;">
+      <div style="font-size:14px;font-weight:500;margin-bottom:10px;">Swimming + your other goals</div>
+      <div class="meal-row"><span class="meal-name">Shoulder health</span><span class="meal-detail">Backstroke = best shoulder rehab for heavy pressers</span></div>
+      <div class="meal-row"><span class="meal-name">5K base</span><span class="meal-detail">Swim improves VO2 max without leg impact</span></div>
+      <div class="meal-row"><span class="meal-name">Muscle up</span><span class="meal-detail">Lat activation in freestyle directly helps the pull phase</span></div>
+      <div class="meal-row"><span class="meal-name">Recovery</span><span class="meal-detail">Cold pool water reduces muscle inflammation post-gym</span></div>
+    </div>
+
+    <div class="note-box">Eat a light snack 30–45 min before swimming (banana or a few biscuits). Don't swim on a full stomach. Post-swim, have your regular breakfast — don't skip it thinking you "already exercised".</div>
+  </div>
+</div>
+
+<script>
+const days = [
+  {
+    name:"Monday", focus:"Push + Chest/Shoulder + Calisthenics",
+    color:"#185FA5", bg:"#E6F1FB", textColor:"#185FA5",
+    tags:["Run","Gym","Calisthenics"],
+    morning:"Easy run 5km @ 5:30–6 min/km",
+    gym:[
+      {name:"Bench press",detail:"4×8 · progressive overload"},
+      {name:"Incline DB press",detail:"3×10"},
+      {name:"Overhead press",detail:"4×8 · key for HSPU"},
+      {name:"Cable fly",detail:"3×12"},
+      {name:"Lateral raises",detail:"3×15"},
+      {name:"Tricep pushdown",detail:"3×12"},
+    ],
+    cali:[
+      {name:"Pike pushup (elevated)",detail:"4×10 → wall HSPU negatives"},
+      {name:"Handstand holds",detail:"4×30s against wall"},
+    ],
+    note:"After gym, 10 min handstand practice. Focus on shoulder stability."
+  },
+  {
+    name:"Tuesday", focus:"Pull + Back + Muscle Up drills",
+    color:"#0F6E56", bg:"#E1F5EE", textColor:"#0F6E56",
+    tags:["Run","Gym","Calisthenics"],
+    morning:"Interval run: 6×400m @ 3:45/km pace, 90s rest",
+    gym:[
+      {name:"Weighted pullups",detail:"4×6 (add 5kg)"},
+      {name:"Barbell row",detail:"4×8"},
+      {name:"Cable row",detail:"3×10"},
+      {name:"Face pulls",detail:"3×15 · rear delt health"},
+      {name:"Hammer curl",detail:"3×12"},
+      {name:"Barbell curl",detail:"3×10"},
+    ],
+    cali:[
+      {name:"False grip holds",detail:"5×20s on bar"},
+      {name:"Hip pullup drills",detail:"3×5 · pull bar to hip, hold 2s"},
+      {name:"Muscle up negatives",detail:"3×3 slow descent"},
+    ],
+    note:"Do cali drills fresh, before weighted pullups. This is your muscle up unlock day."
+  },
+  {
+    name:"Wednesday", focus:"Swimming + Sport + Front Lever",
+    color:"#378ADD", bg:"#E6F1FB", textColor:"#185FA5",
+    tags:["Swim","Sport","Calisthenics"],
+    morning:"Swim session — 1100m (see Swim guide tab)",
+    gym:[
+      {name:"Basketball / Badminton",detail:"45–60 min · full effort"},
+      {name:"Core circuit",detail:"Hanging leg raise 4×12, L-sit 4×20s"},
+      {name:"Ring support hold",detail:"4×30s · shoulder conditioning"},
+    ],
+    cali:[
+      {name:"Tuck front lever",detail:"5×10s → progress to adv tuck"},
+      {name:"Band-assisted front lever",detail:"3×15s"},
+    ],
+    note:"Swim in the morning, sport in the evening. Swim loosens your lats from Tuesday — great combo."
+  },
+  {
+    name:"Thursday", focus:"Legs + Posterior Chain",
+    color:"#993556", bg:"#FBEAF0", textColor:"#993556",
+    tags:["Run","Gym"],
+    morning:"Tempo run: 3km @ 4:10–4:20 min/km",
+    gym:[
+      {name:"Squat",detail:"4×8 · primary leg movement"},
+      {name:"Romanian deadlift",detail:"4×10 · hamstrings + glutes"},
+      {name:"Leg press",detail:"3×12"},
+      {name:"Leg curl",detail:"3×12"},
+      {name:"Calf raises",detail:"4×20"},
+      {name:"Plank / ab wheel",detail:"3×45s / 3×10"},
+    ],
+    cali:[
+      {name:"Pistol squat practice",detail:"3×5 each leg · eccentric focus"},
+    ],
+    note:"Strong legs = better 5K and jump height for basketball. Don't skip this."
+  },
+  {
+    name:"Friday", focus:"Push + Tricep Focus + HSPU",
+    color:"#533AB7", bg:"#EEEDFE", textColor:"#533AB7",
+    tags:["Run","Gym","Calisthenics"],
+    morning:"Easy run 5km @ 5:30 min/km",
+    gym:[
+      {name:"DB shoulder press",detail:"4×10"},
+      {name:"Arnold press",detail:"3×10"},
+      {name:"Close-grip bench",detail:"4×8 · tricep strength"},
+      {name:"Weighted dips",detail:"4×10"},
+      {name:"Skull crushers",detail:"3×10"},
+      {name:"Lateral + front raise",detail:"3×15 superset"},
+    ],
+    cali:[
+      {name:"Wall HSPU negatives",detail:"4×5 · slow 5s descent"},
+      {name:"Freestanding HS practice",detail:"10 min kicking up + holds"},
+    ],
+    note:"Volume is high today — eat your pre-gym meal properly. Sleep matters for shoulder recovery."
+  },
+  {
+    name:"Saturday", focus:"Pull + Deadlift + Muscle Up attempts",
+    color:"#185FA5", bg:"#E6F1FB", textColor:"#185FA5",
+    tags:["Sport","Gym","Calisthenics"],
+    morning:"Basketball / Badminton — longer session if possible",
+    gym:[
+      {name:"Deadlift",detail:"4×5 · heavy, progressive"},
+      {name:"Pullups (max sets)",detail:"5×max · chase volume"},
+      {name:"Lat pulldown",detail:"3×12"},
+      {name:"Seated cable row",detail:"3×10"},
+      {name:"Single arm DB row",detail:"3×12 each"},
+    ],
+    cali:[
+      {name:"Advanced tuck front lever",detail:"5×10–15s"},
+      {name:"One-leg front lever attempt",detail:"3×8s"},
+      {name:"Muscle up attempt",detail:"3 max attempts — go for it"},
+    ],
+    note:"Your biggest calisthenics session. Attempt the muscle up when CNS is fresh, before the gym."
+  },
+  {
+    name:"Sunday", focus:"Recovery Swim + Mobility + Sleep",
+    color:"#5F5E5A", bg:"#F1EFE8", textColor:"#5F5E5A",
+    tags:["Swim","Rest"],
+    morning:"Recovery swim — easy 800–1000m mixed strokes",
+    gym:[
+      {name:"Yoga / stretching",detail:"30 min · hips, shoulders, hamstrings"},
+      {name:"Foam rolling",detail:"15 min · quads, back, calves"},
+    ],
+    cali:[
+      {name:"Light handstand practice",detail:"5 min only · skill not fitness"},
+    ],
+    note:"This day is when you grow. Sunday swim + sleep is your secret weapon. Aim for 9 hours."
+  },
+];
+
+const container = document.getElementById('view-schedule');
+days.forEach((d,i)=>{
+  const card = document.createElement('div');
+  card.className = 'day-card';
+  card.innerHTML = `
+    <div class="day-header" onclick="toggle(${i})">
+      <div class="day-label">
+        <div class="day-badge" style="background:${d.bg};color:${d.textColor}">${d.name.slice(0,2)}</div>
+        <div>
+          <div class="day-title">${d.name}</div>
+          <div class="day-subtitle">${d.focus}</div>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;justify-content:flex-end;">
+        ${d.tags.map(t=>`<span class="tag" style="background:${d.bg};color:${d.textColor}">${t}</span>`).join('')}
+        <span class="expand-icon" id="icon-${i}">▾</span>
+      </div>
+    </div>
+    <div class="day-body" id="body-${i}">
+      <div class="section-title">Morning</div>
+      <div style="font-size:13px;color:var(--color-text-primary);padding:6px 0;">🌅 ${d.morning}</div>
+      <div class="section-title">Evening</div>
+      <div class="workout-grid">
+        ${d.gym.map(w=>`<div class="workout-item"><div class="workout-name">${w.name}</div><div class="workout-detail">${w.detail}</div></div>`).join('')}
+      </div>
+      <div class="section-title">Calisthenics skills</div>
+      <div class="workout-grid">
+        ${d.cali.map(w=>`<div class="workout-item" style="background:${d.bg};"><div class="workout-name" style="color:${d.textColor}">${w.name}</div><div class="workout-detail">${w.detail}</div></div>`).join('')}
+      </div>
+      <div class="note-box">${d.note}</div>
+    </div>
+  `;
+  container.appendChild(card);
+});
+
+function toggle(i){
+  const body=document.getElementById(`body-${i}`);
+  const icon=document.getElementById(`icon-${i}`);
+  const card=body.parentElement;
+  const isOpen=body.classList.contains('open');
+  body.classList.toggle('open',!isOpen);
+  icon.classList.toggle('open',!isOpen);
+  card.classList.toggle('active',!isOpen);
+}
+
+function switchView(view,tab){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  tab.classList.add('active');
+  ['schedule','nutrition','skills','swim'].forEach(v=>{
+    document.getElementById(`view-${v}`).style.display=v===view?'block':'none';
+  });
+}
+</script>
