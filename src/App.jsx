@@ -177,7 +177,7 @@ function App() {
               <div className="text-5xl font-medium">{`}`}</div>
             </div>
             <div className="flex justify-center items-start w-full">
-              <div className="w-full text-justify text-lg md:text-2xl lg:text-3xl">{`I'm Sumit Kumar Jangir — a full-stack engineer and startup builder. With over 6 years of experience across YC-backed startups and major tech firms like upGrad and HERE Technologies, I specialize in building scalable systems, AI agentic apps, and delivering end-to-end products—from backend and frontend to mobile and DevOps. I've co-founded platforms focused on AI-generated content and SEO automation, and I'm passionate about shipping impactful products fast.`}</div>
+              <div className="w-full text-justify text-lg md:text-2xl lg:text-3xl">{`I'm Sumit Kumar Jangir — a full-stack engineer and startup builder. With over 6 years of experience across YC-backed startups and major tech firms like Oracle OCI, upGrad and HERE Technologies, I specialize in building scalable systems, AI agentic apps, and delivering end-to-end products—from backend and frontend to mobile and DevOps. I've co-founded platforms focused on AI-generated content and SEO automation, and I'm passionate about shipping impactful products fast.`}</div>
             </div>
           </div>
         </div>
@@ -233,7 +233,7 @@ function App() {
                 </div>
               </div>
               <div
-                id="component3-truthsuite"
+                id="component3-oci"
                 className="flex-shrink-0 w-screen h-full flex flex-col lg:flex-row items-center justify-center text-white px-10 lg:px-52 gap-10"
               >
                 <div className="flex flex-col justify-start items-start w-full">
@@ -242,12 +242,44 @@ function App() {
                       #1
                     </div>
                     <div className="bg-gradient-to-r from-green-500 to-green-300 z-10 text-black text-xl lg:text-2xl font-extrabold px-6 py-4 rounded-xl relative shadow-2xl shadow-gray-600 lg:whitespace-nowrap">
+                      {`Oracle Cloud Infrastructure - OCI`}
+                    </div>
+                  </div>
+                  <div className="text-[#FEFCE1] text-xl lg:text-2xl pt-20 font-extrabold lg:whitespace-nowrap">
+                    Senior Member of Technical Staff
+                    <span className="font-light px-4 lg:whitespace-nowrap">{`(Oct 2025 - Present)`}</span>
+                  </div>
+                  <ul className="list-disc list-outside text-xl lg:text-2xl text-[#FEFCE1] pt-10 pl-6">
+                    <li>
+                      Working within the Data Science team to provide customers with access to the latest open-source ML models through the OCI platform.
+                    </li>
+                    <li>
+                      {`Oracle ADS (Open Source) — Developing ML capabilities (forecasting, regression) and OCI integrations. Independently built the regression operator and contributed to forecasting, helping retain a major revenue client.`}
+                    </li>
+                  </ul>
+                </div>
+                <div className="flex flex-col justify-start items-center relative w-full gap-4">
+                  <div className="relative bg-black py-10">
+                    <img src="./oci-logo.png" className="w-[360px]" />
+                  </div>
+                </div>
+              </div>
+              <div
+                id="component3-truthsuite"
+                className="flex-shrink-0 w-screen h-full flex flex-col lg:flex-row items-center justify-center text-white px-10 lg:px-52 gap-10"
+              >
+                <div className="flex flex-col justify-start items-start w-full">
+                  <div className="flex justify-start items-center gap-8 w-full">
+                    <div className="bg-white rounded-full px-4 py-2 font-extrabold text-black text-xl lg:text-4xl">
+                      #2
+                    </div>
+                    <div className="bg-gradient-to-r from-green-500 to-green-300 z-10 text-black text-xl lg:text-2xl font-extrabold px-6 py-4 rounded-xl relative shadow-2xl shadow-gray-600 lg:whitespace-nowrap">
                       {`TruthSuite (YCombinator W23)`}
                     </div>
                   </div>
                   <div className="text-[#FEFCE1] text-xl lg:text-2xl pt-20 font-extrabold lg:whitespace-nowrap">
                     Founding Engineer
-                    <span className="font-light px-4 lg:whitespace-nowrap">{`(Feb 2024 - Present)`}</span>
+                    <span className="font-light px-4 lg:whitespace-nowrap">{`(Feb 2024 - Oct 2025)`}</span>
                   </div>
                   <ul className="list-disc list-outside text-xl lg:text-2xl text-[#FEFCE1] pt-10 pl-6">
                     <li>
@@ -283,7 +315,7 @@ function App() {
                 <div className="flex flex-col justify-start items-start w-full">
                   <div className="flex justify-start items-center gap-8 w-full">
                     <div className="bg-white rounded-full px-4 py-2 font-extrabold text-black text-xl lg:text-4xl">
-                      #2
+                      #3
                     </div>
                     <div className="bg-gradient-to-r from-green-500 to-green-300 z-10 text-black text-xl lg:text-2xl font-extrabold px-6 py-4 rounded-xl relative shadow-2xl shadow-gray-600">
                       TopTime Club and TheHyperBrand
@@ -325,7 +357,7 @@ TheHyperBrand.`}
                 <div className="flex flex-col justify-start items-start w-full">
                   <div className="flex justify-start items-center gap-8 w-full">
                     <div className="bg-white rounded-full px-4 py-2 font-extrabold text-black text-xl lg:text-4xl">
-                      #3
+                      #4
                     </div>
                     <div className="bg-gradient-to-r from-green-500 to-green-300 z-10 text-black text-xl lg:text-2xl font-extrabold px-6 py-4 rounded-xl relative shadow-2xl shadow-gray-600">
                       upGrad
@@ -361,7 +393,7 @@ TheHyperBrand.`}
                 <div className="flex flex-col justify-start items-start w-full">
                   <div className="flex justify-start items-center gap-8 w-full">
                     <div className="bg-white rounded-full px-4 py-2 font-extrabold text-black text-xl lg:text-4xl">
-                      #4
+                      #5
                     </div>
                     <div className="bg-gradient-to-r from-green-500 to-green-300 z-10 text-black text-xl lg:text-2xl font-extrabold px-6 py-4 rounded-xl relative shadow-2xl shadow-gray-600">
                       Here Technologies
@@ -400,7 +432,7 @@ TheHyperBrand.`}
                 <div className="flex flex-col justify-start items-start w-full">
                   <div className="flex justify-start items-center gap-8 w-full">
                     <div className="bg-white rounded-full px-4 py-2 font-extrabold text-black text-xl lg:text-4xl">
-                      #5
+                      #6
                     </div>
                     <div className="bg-gradient-to-r from-green-500 to-green-300 z-10 text-black text-xl lg:text-2xl font-extrabold px-6 py-4 rounded-xl relative shadow-2xl shadow-gray-600">
                       GlobalLogic
@@ -435,7 +467,7 @@ TheHyperBrand.`}
                 <div className="flex flex-col justify-start items-start w-full">
                   <div className="flex justify-start items-center gap-8 w-full">
                     <div className="bg-white rounded-full px-4 py-2 font-extrabold text-black text-xl lg:text-4xl">
-                      #6
+                      #7
                     </div>
                     <div className="bg-gradient-to-r from-green-500 to-green-300 z-10 text-black text-xl lg:text-2xl font-extrabold px-6 py-4 rounded-xl relative shadow-2xl shadow-gray-600">
                       College
