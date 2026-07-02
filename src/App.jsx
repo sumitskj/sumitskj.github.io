@@ -177,7 +177,7 @@ function App() {
               <div className="text-5xl font-medium">{`}`}</div>
             </div>
             <div className="flex justify-center items-start w-full">
-              <div className="w-full text-justify text-lg md:text-2xl lg:text-3xl">{`I'm Sumit Kumar Jangir — a full-stack engineer and startup builder. With over 6 years of experience across YC-backed startups and major tech firms like Oracle OCI, upGrad and HERE Technologies, I specialize in building scalable systems, AI agentic apps, and delivering end-to-end products—from backend and frontend to mobile and DevOps. I've co-founded platforms focused on AI-generated content and SEO automation, and I'm passionate about shipping impactful products fast.`}</div>
+              <div className="w-full text-justify text-lg md:text-2xl lg:text-3xl">{`I'm Sumit Kumar Jangir — a full-stack engineer and startup builder. With around 7 years of experience across YC-backed startups and major tech firms like Oracle OCI, upGrad and HERE Technologies, I specialize in building scalable systems, AI agentic apps, and delivering end-to-end products—from backend and frontend to mobile and DevOps. I've co-founded platforms focused on AI-generated content and SEO automation, and I'm passionate about shipping impactful products fast.`}</div>
             </div>
           </div>
         </div>
