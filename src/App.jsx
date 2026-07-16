@@ -520,7 +520,7 @@ TheHyperBrand.`}
           </div>
           <div
             onClick={() =>
-              window.open("https://thb-frontend.azurewebsites.net/", "_blank")
+              window.open("https://thb-frontend-home.vercel.app/", "_blank")
             }
             className="flex flex-col lg:flex-row justify-start items-start w-full border-2 border-[#FEFCE1] rounded-xl p-10 cursor-pointer hover:border-4 gap-10"
           >
@@ -549,7 +549,7 @@ TheHyperBrand.`}
           </div>
           <div
             onClick={() =>
-              window.open("https://toptime-ui.azurewebsites.net/", "_blank")
+              window.open("https://thb-frontend-home.vercel.app", "_blank")
             }
             className="flex flex-col lg:flex-row justify-start items-start w-full border-2 border-[#FEFCE1] rounded-xl p-10 cursor-pointer hover:border-4 gap-10"
           >
@@ -593,7 +593,7 @@ TheHyperBrand.`}
           <div
             onClick={() =>
               window.open(
-                "https://nuoser-frontend.azurewebsites.net/",
+                "https://github.com/sumitskj/blind-frontend-nextjs",
                 "_blank",
               )
             }
@@ -614,6 +614,22 @@ TheHyperBrand.`}
                 src="boldena.gif"
                 className="h-[200px] lg:h-[400px] rounded-xl"
               />
+            </div>
+          </div>
+          <div
+            onClick={() => window.open("https://chromewebstore.google.com/detail/notemychat/eomibcocpjecjlbnlgkdhmppcblcbcgh?hl=en-GB&utm_source=ext_sidebar", "_blank")}
+            className="flex flex-col lg:flex-row justify-start items-start w-full border-2 border-[#FEFCE1] rounded-xl p-10 cursor-pointer hover:border-4 gap-10"
+          >
+            <div className="flex flex-col justify-start items-start w-full gap-10">
+              <div className="text-[#FEFCE1] text-xl lg:text-2xl font-extrabold">
+                NoteMyChat Extension
+              </div>
+              <div className="text-[#FEFCE1] text-xl lg:text-2xl font-light">
+                Import important conversations from ChatGPT and Gemini to NoteMyChat and save it to access it later. I was frustrated with losing valuable AI conversations that helped me learn and think better. LLM Chat Importer is my solution to turn AI chats into reusable knowledge.
+              </div>
+            </div>
+            <div className="flex flex-col justify-start items-start w-full">
+              <img src="notemychat.png" className="h-[200px] lg:h-[400px] rounded-xl" />
             </div>
           </div>
         </div>
